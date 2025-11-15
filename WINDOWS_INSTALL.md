@@ -6,7 +6,36 @@ This guide will help you install and run Studio Commons on Windows.
 
 ---
 
-## Step 1: Install Rust and Cargo
+## Step 1: Install Microsoft Visual C++ Build Tools (REQUIRED!)
+
+**Windows users MUST install this first or Rust won't compile!**
+
+### Quick Install (Recommended):
+
+Download and install **Visual Studio Build Tools 2022**:
+1. Visit: https://visualstudio.microsoft.com/downloads/
+2. Scroll down to "Tools for Visual Studio"
+3. Download **"Build Tools for Visual Studio 2022"**
+4. Run the installer
+5. When prompted, select **"Desktop development with C++"**
+6. Click Install (this will take 10-20 minutes)
+7. Restart your computer after installation
+
+**OR** use this direct download link:
+https://aka.ms/vs/17/release/vs_BuildTools.exe
+
+### Verify Installation:
+
+After restarting, open PowerShell and run:
+```powershell
+where.exe link.exe
+```
+
+You should see a path like `C:\Program Files\Microsoft Visual Studio\...\link.exe`
+
+---
+
+## Step 2: Install Rust and Cargo
 
 ### Option A: Quick Install (Recommended)
 
@@ -57,7 +86,7 @@ If you see "command not found", restart PowerShell again.
 
 ---
 
-## Step 2: Install Git (if not already installed)
+## Step 3: Install Git (if not already installed)
 
 ### Check if Git is installed:
 
@@ -73,7 +102,7 @@ git --version
 
 ---
 
-## Step 3: Clone Studio Commons
+## Step 4: Clone Studio Commons
 
 **✅ CORRECT URL (Fixed!):**
 
@@ -95,7 +124,7 @@ git checkout claude/fix-asp-validation-0156uG4x62SsimRfcQbtWZz2
 
 ---
 
-## Step 4: Build the Project
+## Step 5: Build the Project
 
 ```powershell
 # Build in release mode (optimized)
@@ -111,7 +140,7 @@ Finished `release` profile [optimized] target(s) in XX.XXs
 
 ---
 
-## Step 5: Run Tests
+## Step 6: Run Tests
 
 Verify everything works:
 
@@ -126,7 +155,7 @@ test result: ok. XX passed; 0 failed; 0 ignored; 0 measured; 0 filtered out
 
 ---
 
-## Step 6: Run Studio Commons
+## Step 7: Run Studio Commons
 
 ```powershell
 # Run the application
@@ -172,8 +201,27 @@ Write-Host "`n╔═════════════════════
 Write-Host "║     STUDIO COMMONS - Windows Installation Script      ║" -ForegroundColor Cyan
 Write-Host "╚════════════════════════════════════════════════════════╝`n" -ForegroundColor Cyan
 
-# Step 1: Check/Install Rust
-Write-Host "[1/5] Checking Rust installation..." -ForegroundColor Yellow
+# Step 1: Check for MSVC Build Tools
+Write-Host "[1/6] Checking for Microsoft Visual C++ Build Tools..." -ForegroundColor Yellow
+if (!(Get-Command link.exe -ErrorAction SilentlyContinue)) {
+    Write-Host "      ✗ MSVC Build Tools not found!" -ForegroundColor Red
+    Write-Host "" -ForegroundColor White
+    Write-Host "      You MUST install Visual Studio Build Tools first:" -ForegroundColor Yellow
+    Write-Host "      1. Download from: https://aka.ms/vs/17/release/vs_BuildTools.exe" -ForegroundColor White
+    Write-Host "      2. Run the installer" -ForegroundColor White
+    Write-Host "      3. Select 'Desktop development with C++'" -ForegroundColor White
+    Write-Host "      4. Install (takes 10-20 minutes)" -ForegroundColor White
+    Write-Host "      5. Restart your computer" -ForegroundColor White
+    Write-Host "      6. Run this script again" -ForegroundColor White
+    Write-Host "" -ForegroundColor White
+    Write-Host "      Without this, Rust cannot compile on Windows!" -ForegroundColor Red
+    exit
+} else {
+    Write-Host "      ✓ MSVC Build Tools found" -ForegroundColor Green
+}
+
+# Step 2: Check/Install Rust
+Write-Host "[2/6] Checking Rust installation..." -ForegroundColor Yellow
 if (!(Get-Command cargo -ErrorAction SilentlyContinue)) {
     Write-Host "      Installing Rust... (this may take 10 minutes)" -ForegroundColor Yellow
     Invoke-WebRequest -Uri "https://win.rustup.rs/x86_64" -OutFile "$env:TEMP\rustup-init.exe"
@@ -189,8 +237,8 @@ if (!(Get-Command cargo -ErrorAction SilentlyContinue)) {
     Write-Host "      ✓ Rust is already installed" -ForegroundColor Green
 }
 
-# Step 2: Check Git
-Write-Host "[2/5] Checking Git installation..." -ForegroundColor Yellow
+# Step 3: Check Git
+Write-Host "[3/6] Checking Git installation..." -ForegroundColor Yellow
 if (!(Get-Command git -ErrorAction SilentlyContinue)) {
     Write-Host "      ✗ Git not found. Please install from: https://git-scm.com/download/win" -ForegroundColor Red
     exit
@@ -198,8 +246,8 @@ if (!(Get-Command git -ErrorAction SilentlyContinue)) {
     Write-Host "      ✓ Git is installed" -ForegroundColor Green
 }
 
-# Step 3: Clone Repository
-Write-Host "[3/5] Cloning Studio Commons..." -ForegroundColor Yellow
+# Step 4: Clone Repository
+Write-Host "[4/6] Cloning Studio Commons..." -ForegroundColor Yellow
 $targetPath = "$HOME\Documents\studio-commons"
 if (Test-Path $targetPath) {
     Write-Host "      Directory exists. Updating..." -ForegroundColor Yellow
@@ -216,8 +264,8 @@ if (Test-Path $targetPath) {
 }
 Write-Host "      ✓ Repository ready" -ForegroundColor Green
 
-# Step 4: Build Project
-Write-Host "[4/5] Building Studio Commons... (first build takes 5-15 min)" -ForegroundColor Yellow
+# Step 5: Build Project
+Write-Host "[5/6] Building Studio Commons... (first build takes 5-15 min)" -ForegroundColor Yellow
 cargo build --release
 if ($LASTEXITCODE -eq 0) {
     Write-Host "      ✓ Build successful!" -ForegroundColor Green
@@ -226,8 +274,8 @@ if ($LASTEXITCODE -eq 0) {
     exit
 }
 
-# Step 5: Run Tests
-Write-Host "[5/5] Running tests..." -ForegroundColor Yellow
+# Step 6: Run Tests
+Write-Host "[6/6] Running tests..." -ForegroundColor Yellow
 cargo test --all --quiet
 if ($LASTEXITCODE -eq 0) {
     Write-Host "      ✓ All tests passed!" -ForegroundColor Green
@@ -270,6 +318,35 @@ To run this script:
 
 ## Troubleshooting
 
+### ❌ ERROR: "linker `link.exe` not found" (MOST COMMON!)
+
+**Full error message:**
+```
+error: linker `link.exe` not found
+note: the msvc targets depend on the msvc linker but `link.exe` was not found
+note: please ensure that Visual Studio 2017 or later, or Build Tools for Visual Studio were installed with the Visual C++ option.
+```
+
+**Problem**: You don't have Microsoft Visual C++ Build Tools installed!
+
+**Solution**:
+1. Download Visual Studio Build Tools: https://aka.ms/vs/17/release/vs_BuildTools.exe
+2. Run the installer
+3. When prompted, check **"Desktop development with C++"**
+4. Click Install (takes 10-20 minutes)
+5. **Restart your computer** (very important!)
+6. Try building again: `cargo build --release`
+
+**This is the #1 issue for Windows users!** Rust on Windows REQUIRES MSVC Build Tools to compile code.
+
+**Verify it's installed:**
+```powershell
+where.exe link.exe
+```
+You should see: `C:\Program Files\Microsoft Visual Studio\...\link.exe`
+
+---
+
 ### "could not find Cargo.toml" error
 
 **Problem**: You cloned the repository but didn't checkout the branch with the code!
@@ -284,7 +361,7 @@ Then try building again:
 cargo build --release
 ```
 
-This is the #1 most common issue! The complete v1.0.0 code is on the `claude/fix-asp-validation-0156uG4x62SsimRfcQbtWZz2` branch, not on `main`.
+The complete v1.0.0 code is on the `claude/fix-asp-validation-0156uG4x62SsimRfcQbtWZz2` branch, not on `main`.
 
 ### "cargo: command not found" after installing Rust
 
