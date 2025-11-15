@@ -1,9 +1,9 @@
 # Studio Commons
 
-[![GitHub license](https://img.shields.io/github/license/e_honiball/studio-commons)](https://github.com/e_honiball/studio-commons/blob/main/LICENSE)
-[![GitHub stars](https://img.shields.io/github/stars/e_honiball/studio-commons)](https://github.com/e_honiball/studio-commons/stargazers)
-[![GitHub issues](https://img.shields.io/github/issues/e_honiball/studio-commons)](https://github.com/e_honiball/studio-commons/issues)
-[![GitHub forks](https://img.shields.io/github/forks/e_honiball/studio-commons)](https://github.com/e_honiball/studio-commons/network)
+[![GitHub license](https://img.shields.io/github/license/Tokeloshe/studio-commons)](https://github.com/Tokeloshe/studio-commons/blob/main/LICENSE)
+[![GitHub stars](https://img.shields.io/github/stars/Tokeloshe/studio-commons)](https://github.com/Tokeloshe/studio-commons/stargazers)
+[![GitHub issues](https://img.shields.io/github/issues/Tokeloshe/studio-commons)](https://github.com/Tokeloshe/studio-commons/issues)
+[![GitHub forks](https://img.shields.io/github/forks/Tokeloshe/studio-commons)](https://github.com/Tokeloshe/studio-commons/network)
 
 Studio Commons is a global, decentralized platform for community-owned creative infrastructure, starting in LA and scaling worldwide. It enables split ownership, DeFi treasury, intelligent CCI tracking, ethical AI tools, and fair revenue sharing—reclaiming creative spaces for artists everywhere. Licensed under AGPL-3.0.
 
@@ -69,7 +69,7 @@ Studio Commons addresses systemic inequities in the creative industry:
 
 ```bash
 # Clone the repository
-git clone https://github.com/e_honiball/studio-commons.git
+git clone https://github.com/Tokeloshe/studio-commons.git
 cd studio-commons
 
 # Build the project
@@ -293,9 +293,9 @@ See [LICENSE](LICENSE) for full details.
 ## Contact
 
 - **Creator**: [@e_honiball](https://x.com/e_honiball) on X
-- **Repository**: [github.com/e_honiball/studio-commons](https://github.com/e_honiball/studio-commons)
-- **Issues**: [GitHub Issues](https://github.com/e_honiball/studio-commons/issues)
-- **Discussions**: [GitHub Discussions](https://github.com/e_honiball/studio-commons/discussions)
+- **Repository**: [github.com/Tokeloshe/studio-commons](https://github.com/Tokeloshe/studio-commons)
+- **Issues**: [GitHub Issues](https://github.com/Tokeloshe/studio-commons/issues)
+- **Discussions**: [GitHub Discussions](https://github.com/Tokeloshe/studio-commons/discussions)
 
 ## Acknowledgments
 

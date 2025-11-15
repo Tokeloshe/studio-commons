@@ -41,7 +41,7 @@ We expect all contributors to:
    ```
 3. **Add upstream remote**:
    ```bash
-   git remote add upstream https://github.com/e_honiball/studio-commons.git
+   git remote add upstream https://github.com/Tokeloshe/studio-commons.git
    ```
 4. **Keep your fork synced**:
    ```bash
@@ -81,7 +81,7 @@ cargo clippy
 ## How to Contribute
 
 ### Reporting Bugs
-1. Check if the bug has already been reported in [Issues](https://github.com/e_honiball/studio-commons/issues)
+1. Check if the bug has already been reported in [Issues](https://github.com/Tokeloshe/studio-commons/issues)
 2. If not, create a new issue with:
    - Clear, descriptive title
    - Steps to reproduce
@@ -90,7 +90,7 @@ cargo clippy
    - Relevant logs or error messages
 
 ### Suggesting Enhancements
-1. Check existing [Issues](https://github.com/e_honiball/studio-commons/issues) and [Discussions](https://github.com/e_honiball/studio-commons/discussions)
+1. Check existing [Issues](https://github.com/Tokeloshe/studio-commons/issues) and [Discussions](https://github.com/Tokeloshe/studio-commons/discussions)
 2. Create a new issue or discussion with:
    - Clear description of the enhancement
    - Use cases and benefits
@@ -331,8 +331,8 @@ Studio Commons is a global platform. We especially welcome contributions that:
 
 ## Questions or Need Help?
 
-- **Discussions**: [GitHub Discussions](https://github.com/e_honiball/studio-commons/discussions)
-- **Issues**: [GitHub Issues](https://github.com/e_honiball/studio-commons/issues)
+- **Discussions**: [GitHub Discussions](https://github.com/Tokeloshe/studio-commons/discussions)
+- **Issues**: [GitHub Issues](https://github.com/Tokeloshe/studio-commons/issues)
 - **Contact**: [@e_honiball](https://x.com/e_honiball) on X
 
 ## License

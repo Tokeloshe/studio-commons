@@ -19,7 +19,7 @@ edition = "2021"
 authors = ["Studio Commons Community <contact@e_honiball>"]
 license = "AGPL-3.0"
 description = "Global community-owned creative infrastructure platform"
-repository = "https://github.com/e_honiball/studio-commons"
+repository = "https://github.com/Tokeloshe/studio-commons"
 keywords = ["blockchain", "defi", "creative", "commons", "dao"]
 categories = ["multimedia", "finance", "web-programming"]
 

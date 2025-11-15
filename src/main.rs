@@ -76,7 +76,7 @@ impl StudioCommons {
         println!("╠═══════════════════════════════════════════════════════════════╣");
         println!("║  Version: 1.0.0                                               ║");
         println!("║  License: AGPL-3.0                                            ║");
-        println!("║  Repository: github.com/e_honiball/studio-commons             ║");
+        println!("║  Repository: github.com/Tokeloshe/studio-commons              ║");
         println!("╠═══════════════════════════════════════════════════════════════╣");
         println!("║  Founder's Fee: 1% to XRP wallet                              ║");
         println!("║  Address: rf82s1CDagppvM6ATqc1nSrL6GackzHJrm                  ║");
