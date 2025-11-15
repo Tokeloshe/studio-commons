@@ -1,0 +1,58 @@
+[workspace]
+members = [
+    "src/governance",
+    "src/treasury",
+    "src/cci",
+    "src/production",
+    "src/membership",
+    "src/payments",
+    "src/analytics",
+    "src/compliance",
+    "src/utils",
+]
+resolver = "2"
+
+[package]
+name = "studio-commons"
+version = "1.0.0"
+edition = "2021"
+authors = ["Studio Commons Community <contact@e_honiball>"]
+license = "AGPL-3.0"
+description = "Global community-owned creative infrastructure platform"
+repository = "https://github.com/e_honiball/studio-commons"
+keywords = ["blockchain", "defi", "creative", "commons", "dao"]
+categories = ["multimedia", "finance", "web-programming"]
+
+[dependencies]
+governance = { path = "src/governance" }
+treasury = { path = "src/treasury" }
+cci = { path = "src/cci" }
+production = { path = "src/production" }
+membership = { path = "src/membership" }
+payments = { path = "src/payments" }
+analytics = { path = "src/analytics" }
+compliance = { path = "src/compliance" }
+utils = { path = "src/utils" }
+
+tokio = { version = "1.35", features = ["full"] }
+serde = { version = "1.0", features = ["derive"] }
+serde_json = "1.0"
+anyhow = "1.0"
+thiserror = "1.0"
+log = "0.4"
+env_logger = "0.11"
+chrono = { version = "0.4", features = ["serde"] }
+uuid = { version = "1.6", features = ["v4", "serde"] }
+
+[dev-dependencies]
+tokio-test = "0.4"
+
+[profile.release]
+opt-level = 3
+lto = true
+codegen-units = 1
+strip = true
+
+[profile.dev]
+opt-level = 0
+debug = true
