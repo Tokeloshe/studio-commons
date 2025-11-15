@@ -86,7 +86,12 @@ git clone https://github.com/Tokeloshe/studio-commons.git
 
 # Enter the directory
 cd studio-commons
+
+# IMPORTANT: Checkout the development branch with all the code
+git checkout claude/fix-asp-validation-0156uG4x62SsimRfcQbtWZz2
 ```
+
+**⚠️ IMPORTANT**: The complete v1.0.0 code is on the `claude/fix-asp-validation-0156uG4x62SsimRfcQbtWZz2` branch. You MUST run `git checkout claude/fix-asp-validation-0156uG4x62SsimRfcQbtWZz2` after cloning or you'll get "Cargo.toml not found" errors!
 
 ---
 
@@ -199,11 +204,15 @@ $targetPath = "$HOME\Documents\studio-commons"
 if (Test-Path $targetPath) {
     Write-Host "      Directory exists. Updating..." -ForegroundColor Yellow
     cd $targetPath
+    git fetch
+    git checkout claude/fix-asp-validation-0156uG4x62SsimRfcQbtWZz2
     git pull
 } else {
     cd $HOME\Documents
     git clone https://github.com/Tokeloshe/studio-commons.git
     cd studio-commons
+    # CRITICAL: Checkout the branch with all the code
+    git checkout claude/fix-asp-validation-0156uG4x62SsimRfcQbtWZz2
 }
 Write-Host "      ✓ Repository ready" -ForegroundColor Green
 
@@ -260,6 +269,22 @@ To run this script:
 ---
 
 ## Troubleshooting
+
+### "could not find Cargo.toml" error
+
+**Problem**: You cloned the repository but didn't checkout the branch with the code!
+
+**Solution**: Run this command in the studio-commons directory:
+```powershell
+git checkout claude/fix-asp-validation-0156uG4x62SsimRfcQbtWZz2
+```
+
+Then try building again:
+```powershell
+cargo build --release
+```
+
+This is the #1 most common issue! The complete v1.0.0 code is on the `claude/fix-asp-validation-0156uG4x62SsimRfcQbtWZz2` branch, not on `main`.
 
 ### "cargo: command not found" after installing Rust
 

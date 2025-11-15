@@ -265,6 +265,9 @@ Studio Commons addresses systemic inequities in the creative industry:
 git clone https://github.com/Tokeloshe/studio-commons.git
 cd studio-commons
 
+# IMPORTANT: Checkout the development branch with all the code
+git checkout claude/fix-asp-validation-0156uG4x62SsimRfcQbtWZz2
+
 # Build the project
 cargo build --release
 
@@ -274,6 +277,8 @@ cargo test
 # Run the application
 cargo run --release
 ```
+
+**Note**: The complete v1.0.0 code is currently on the `claude/fix-asp-validation-0156uG4x62SsimRfcQbtWZz2` branch. Make sure to checkout this branch after cloning!
 
 ### Environment Configuration
 
