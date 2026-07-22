@@ -397,6 +397,17 @@ dependencies = [
 ]
 
 [[package]]
+name = "network"
+version = "1.0.0"
+dependencies = [
+ "anyhow",
+ "economics",
+ "log",
+ "serde",
+ "uuid",
+]
+
+[[package]]
 name = "num-traits"
 version = "0.2.19"
 source = "registry+https://github.com/rust-lang/crates.io-index"
@@ -656,6 +667,7 @@ dependencies = [
  "governance",
  "log",
  "membership",
+ "network",
  "payments",
  "production",
  "serde",

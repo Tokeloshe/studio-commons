@@ -7,6 +7,7 @@ members = [
     "src/membership",
     "src/payments",
     "src/economics",
+    "src/network",
     "src/analytics",
     "src/compliance",
     "src/utils",
@@ -32,6 +33,7 @@ production = { path = "src/production" }
 membership = { path = "src/membership" }
 payments = { path = "src/payments" }
 economics = { path = "src/economics" }
+network = { path = "src/network" }
 analytics = { path = "src/analytics" }
 compliance = { path = "src/compliance" }
 utils = { path = "src/utils" }

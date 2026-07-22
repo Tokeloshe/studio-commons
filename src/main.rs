@@ -26,6 +26,7 @@ use production::ProductionSystem;
 use membership::MembershipSystem;
 use payments::PaymentsSystem;
 use economics::FiscalEngine;
+use network::HubNetwork;
 use analytics::AnalyticsSystem;
 use compliance::ComplianceSystem;
 
@@ -38,6 +39,7 @@ pub struct StudioCommons {
     pub membership: MembershipSystem,
     pub payments: PaymentsSystem,
     pub economics: FiscalEngine,
+    pub network: HubNetwork,
     pub analytics: AnalyticsSystem,
     pub compliance: ComplianceSystem,
 }
@@ -58,6 +60,8 @@ impl StudioCommons {
         let membership = MembershipSystem::new(region)?;
         let payments = PaymentsSystem::new()?;
         let economics = FiscalEngine::new()?;
+        let mut network = HubNetwork::new();
+        network.found_hub(region)?;
         let analytics = AnalyticsSystem::new()?;
 
         Ok(Self {
@@ -68,6 +72,7 @@ impl StudioCommons {
             membership,
             payments,
             economics,
+            network,
             analytics,
             compliance,
         })

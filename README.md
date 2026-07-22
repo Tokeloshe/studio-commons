@@ -68,6 +68,15 @@ Growth is **earned, not hoped for**. A hub may seed a new hub only when all of t
 
 This makes the network self-replicating from genuine surplus: every new hub is born from proof that the model works, and expansion can never endanger the hub that funds it.
 
+#### The Network Layer: Growth Flows From Strength
+
+The network module coordinates the whole fleet of hubs:
+
+- **Sponsor ranking**: when the network expands, the sponsor is chosen by a deterministic ranking — longest current streak of profitable, Healthy periods first, then largest expansion fund. Any member can recompute the ranking and verify the choice; there is no discretion to lobby.
+- **Hubs are firewalled**: each hub's obligations are its own. One hub's insolvency cannot draw a single unit from another hub's reserves. Money crosses between hubs at exactly one moment — seeding — and only from an expansion fund that exists because of sustained surplus.
+- **Network-wide conservation**: every seed leaving a sponsor arrives as founding capital in exactly one child, and the network audit proves the totals match while every hub's own books conserve.
+- **Permanent lineage**: every hub records who seeded it. The family tree is acyclic by construction (a parent must exist before its child), and generation numbers track how far the model has replicated from its roots.
+
 ### The CCI System: Fair Credit for What You Do
 
 The most innovative part is the **Creative Contribution Index (CCI)**—think of it as "proof of work" for creative contributions. It is **pure merit**: your score is a function of the work you did and how independent peers judged its quality. Nothing about *who you are* ever enters the math—no identity bonuses, no favoritism in any direction. The same formula means the same thing in LA, Mumbai, Berlin, or Lagos.
@@ -235,6 +244,7 @@ Without software, this would be impossible to manage:
 - **CCI (Creative Contribution Index)**: merit-based contribution tracking — verified hours × median peer-reviewed impact on a tamper-evident ledger — for fair residuals distribution
 - **Production AI**: Virtual/AR stages (60% cost reduction), ethical generative tools with consent enforcement
 - **Fiscal Engine**: costs-first accounting with exact integer conservation, runway-based health states, debt-before-profit recovery, and an expansion fund that seeds new hubs only from sustained surplus
+- **Hub Network**: deterministic strongest-sponsor expansion, firewalled hub finances, seed-capital conservation across the fleet, and permanent acyclic lineage
 - **Membership**: Portable global memberships with seamless cross-hub transfers
 - **Compliance**: Auto-adapts to worldwide laws (GDPR, Indian IT Act, US IRS, etc.)
 - **Analytics**: Predictive forecasting for economic and cultural impact
@@ -367,6 +377,7 @@ studio-commons/
 │   ├── membership/        # Global member management
 │   ├── payments/          # Revenue processing + founder's fee
 │   ├── economics/         # Fiscal engine: costs-first waterfall, runway health, expansion fund
+│   ├── network/           # Hub fleet: sponsor ranking, firewalled seeding, lineage
 │   ├── analytics/         # Predictive intelligence
 │   ├── compliance/        # Global legal adapters
 │   └── utils/             # Common utilities
