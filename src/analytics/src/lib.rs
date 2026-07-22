@@ -202,6 +202,36 @@ mod tests {
     }
 
     #[test]
+    fn test_fairness_empty_and_zero_distributions_dont_panic() {
+        let analytics = AnalyticsSystem::new().unwrap();
+
+        let empty = analytics.fairness_analytics(vec![]).unwrap();
+        assert_eq!(empty.reward_concentration, 0.0);
+        assert_eq!(empty.participation_rate, 0.0);
+        assert!(!empty.capture_warning);
+
+        let zeros = analytics.fairness_analytics(vec![0.0; 10]).unwrap();
+        assert_eq!(zeros.reward_concentration, 0.0);
+        assert_eq!(zeros.participation_rate, 0.0);
+    }
+
+    #[test]
+    fn test_gini_bounds() {
+        let analytics = AnalyticsSystem::new().unwrap();
+
+        // Perfect equality → 0.
+        let equal = analytics.fairness_analytics(vec![50.0; 20]).unwrap();
+        assert!(equal.reward_concentration.abs() < 1e-9);
+
+        // Total capture approaches 1 and never exceeds it.
+        let mut captured = vec![0.0; 99];
+        captured.push(1_000_000.0);
+        let report = analytics.fairness_analytics(captured).unwrap();
+        assert!(report.reward_concentration > 0.95);
+        assert!(report.reward_concentration <= 1.0);
+    }
+
+    #[test]
     fn test_fairness_healthy_distribution() {
         let analytics = AnalyticsSystem::new().unwrap();
 

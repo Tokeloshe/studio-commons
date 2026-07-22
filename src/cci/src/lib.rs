@@ -345,21 +345,27 @@ impl CCISystem {
             return Ok(Vec::new());
         }
 
-        let mut shares: Vec<ResidualShare> = project_points
-            .into_iter()
-            .map(|(member_id, points)| {
-                let share_percentage = (points / total_points) * 100.0;
-                ResidualShare {
-                    member_id,
-                    project_id,
-                    share_percentage,
-                    amount: (residuals as f64 * points / total_points) as u128,
-                }
-            })
-            .collect();
-
         // Deterministic ordering so every recomputation is byte-identical.
-        shares.sort_by(|a, b| a.member_id.cmp(&b.member_id));
+        let mut ranked: Vec<(MemberId, f64)> = project_points.into_iter().collect();
+        ranked.sort_by(|a, b| a.0.cmp(&b.0));
+
+        // Clamp each payout to what remains undistributed so float rounding
+        // can never mint money: the sum of shares is <= residuals by
+        // construction, even at u128 extremes where f64 loses precision.
+        let mut remaining = residuals;
+        let mut shares = Vec::with_capacity(ranked.len());
+        for (member_id, points) in ranked {
+            let share_percentage = (points / total_points) * 100.0;
+            let amount =
+                ((residuals as f64 * points / total_points) as u128).min(remaining);
+            remaining -= amount;
+            shares.push(ResidualShare {
+                member_id,
+                project_id,
+                share_percentage,
+                amount,
+            });
+        }
 
         info!(
             "Distributed {} in residuals to {} members",
@@ -389,6 +395,18 @@ impl CCISystem {
             chain_valid: true,
             first_invalid_entry: None,
         }
+    }
+
+    /// Hash of the newest ledger entry. Publish or anchor this externally
+    /// (chain state, signed minutes, a pinned post) — a hash chain alone
+    /// cannot detect truncation of its own tail, but an anchored head can.
+    pub fn head_hash(&self) -> u64 {
+        self.ledger.last().map(|c| c.entry_hash).unwrap_or(0)
+    }
+
+    /// Number of ledger entries.
+    pub fn ledger_len(&self) -> usize {
+        self.ledger.len()
     }
 
     /// Get merit score for a member.
