@@ -3,364 +3,142 @@
 [![GitHub license](https://img.shields.io/github/license/Tokeloshe/studio-commons)](https://github.com/Tokeloshe/studio-commons/blob/main/LICENSE)
 [![GitHub stars](https://img.shields.io/github/stars/Tokeloshe/studio-commons)](https://github.com/Tokeloshe/studio-commons/stargazers)
 [![GitHub issues](https://img.shields.io/github/issues/Tokeloshe/studio-commons)](https://github.com/Tokeloshe/studio-commons/issues)
-[![GitHub forks](https://img.shields.io/github/forks/Tokeloshe/studio-commons)](https://github.com/Tokeloshe/studio-commons/network)
 
-Studio Commons is a global, decentralized platform for community-owned creative infrastructure, starting in LA and scaling worldwide. It enables split ownership, DeFi treasury, intelligent CCI tracking, ethical AI tools, and fair revenue sharing—reclaiming creative spaces for artists everywhere. Licensed under AGPL-3.0.
+**The creative industry has a trust problem. This is infrastructure that removes the need for trust.**
 
-**Includes 1% perpetual founder's fee to XRP wallet `rf82s1CDagppvM6ATqc1nSrL6GackzHJrm` with memo `2621443948`.**
+Studio Commons is community-owned studio infrastructure where crediting, payment, solvency, and growth are enforced by open-source code instead of promises — auditable by any member, gameable by no one. Written in Rust, licensed AGPL-3.0, so no one can take it private.
 
 ---
 
-## How Studio Commons Actually Works
+## The Problems This Kills
 
-Think of Studio Commons as a **co-op for creative spaces**, but powered by code that makes everything transparent, fair, and global. Here's how it works in real life:
+Every working filmmaker, musician, and creator knows these. They are not bugs in the industry — they *are* the industry. Each one is eliminated here by a specific, tested mechanism, not a policy document.
 
-### The Basic Idea
+### 1. "Hollywood accounting" — profitable films that never pay
+*Forrest Gump*, on paper, lost money. Studios route revenue through opaque subsidiaries until net-profit participants get nothing. It works because the books are private and the definitions are theirs.
 
-Instead of one wealthy owner controlling a film studio and extracting all the profits, **the community owns it together**. Artists, filmmakers, and creators become member-owners who use the studio, share in its success, and vote on how it operates.
+**Killed by:** the fiscal engine closes every period with an **exact integer conservation identity** — revenue = expenses + fees + distributions + funds held, to the unit. The audit function is public code. If a single cent is unaccounted for, the audit fails and every member can see it. "The books" are not a claim; they're a recomputable proof.
 
-### How People Join
+### 2. Lost credits and stolen residuals
+Work-for-hire contracts, forgotten credits, residual checks that stop coming, decades of union fights over streaming revenue. The person who did the work has no durable, enforceable record that they did it.
 
-1. **Pay Monthly Dues**: You join by paying modest monthly dues (like $50/month in LA, ₹2,000 in Mumbai, €45 in Berlin). The code adapts prices to your region's economy.
+**Killed by:** the Creative Contribution Index (CCI) — a **tamper-evident, hash-chained ledger** of who did what. Your contribution record is permanent: if a project earns money in year ten, your share is recomputed from the same ledger, deterministically, and pays out at the same proportion. Rewriting history invalidates the chain and the built-in audit catches it. No negotiating, no "we lost the paperwork."
 
-2. **Get a Portable ID**: The membership system gives you a global ID (like "SC-123abc") that works at any Studio Commons location worldwide.
+### 3. Credit and pay decided by politics, not work
+Who you know, who likes you, who takes credit for your work — the industry runs on favoritism in every direction.
 
-3. **Start Using the Studio**: Book equipment, rent stages, access AI tools—everything professional studios have, but at cost-share prices instead of profit-maximized rates.
+**Killed by:** merit math that is **identity-blind by construction**. Your score is verified hours × the *median* of at least 3 independent peer reviews. Nothing about who you are enters the formula — no bonuses or penalties for anyone. The median means one shill review or one hostile saboteur cannot move your score. You can't review yourself, you can't review your own project's collaborators, you can't vote twice — all enforced in code, all battle-tested against exactly those attacks.
 
-### How the Studio Operates
+### 4. Studios that collapse — or extract everything
+Traditional model: an owner invests $5M, extracts $10M, the crew gets day rates. Or the opposite failure: a well-meaning co-op distributes everything and dies the first bad quarter, because generosity ran ahead of solvency.
 
-The governance module runs this like a **democratic organization**:
+**Killed by:** a costs-first fiscal engine that makes both failure modes structurally impossible:
+- **Nothing is "profit" until every bill is paid.** Loss periods pay no fees and no distributions — there is no profit to distribute.
+- **Debts before profit.** Unpaid obligations from bad periods are settled out of future surplus before the waterfall runs.
+- **Survival before generosity.** Allocation follows the hub's runway (months of reserves at current burn): under 3 months, every unit of surplus rebuilds reserves; 3–6 months, half does; at 6+ months, full distribution resumes — 50% to members by merit, 20% local reinvestment, 10% to expansion, ~20% to reserves.
+- **Prudence has a cap.** Reserves beyond 12 months of runway overflow into expansion — money beyond safety builds the next studio instead of hoarding.
 
-- **License Auctions**: Communities bid to operate a Studio Commons hub in their city. The highest bidder gets a time-limited license (like 1-2 years) to run the facility.
+A hub running this code *cannot* pay members while its rent goes unpaid, and *cannot* sit on a fortune while claiming poverty. Both are compile-time-style guarantees about money.
 
-- **DAO Voting**: Members vote on major decisions—should we buy new cameras? Should we raise prices? Should we partner with a local film festival? Everyone gets a say, weighted by their contributions.
+### 5. Gatekept access
+Professional infrastructure — stages, gear, post suites — is priced for incumbents and gatekept by them.
 
-- **Standards Enforcement**: The code automatically checks that each hub maintains standards:
-  - **Open access**: membership decided purely on published, objective criteria — never on who you are
-  - **Carbon-neutral operations** (tracked and offset)
-  - **Fair wages** (meeting local union standards)
-  - **Community satisfaction** scores
+**Killed by:** cost-share membership with open-access standards enforced on every licensed hub: membership decided purely on published, objective criteria; fair wages meeting local standards; sustainability targets. No quotas on who you are, guarantees on how you're treated — the same deal in every city on Earth.
 
-### How Money Flows (This Is Where the Code Shines)
+### 6. Growth that outruns the model — or never happens
+Franchises expand on hype and implode; co-ops stay single-city forever because nobody can safely fund the second location.
 
-The fiscal engine (economics module) closes the books every period with **exact integer arithmetic** — every unit of currency is provably accounted for — and follows one iron rule: **costs come first**. Nothing is "profit" until every bill of the period is paid. Distributing gross revenue is how co-ops die; this engine makes it structurally impossible.
+**Killed by:** the network layer, where **growth flows from proven strength**:
+- A new hub is seeded only from a sponsor's expansion fund — reserves are never touched.
+- The sponsor must be Healthy *now* and have 3 consecutive profitable, Healthy periods. One good month is not a track record; one loss resets the clock.
+- The sponsor is chosen by a deterministic ranking (longest healthy streak, then largest fund) that any member can recompute — no committee to lobby.
+- Hubs are financially firewalled: a failing hub cannot draw one unit from any other hub's reserves.
+- Every seed is conserved: the network audit proves money leaving sponsors equals founding capital arriving in children, exactly.
 
-#### Example: Studio Takes In $10,000 This Month, Spends $6,000 Operating
-
-1. **Expenses are paid first**: rent, wages, insurance, equipment — $6,000
-2. **Debts before profit**: if past periods left unpaid obligations, this period's surplus settles them before anything counts as profit
-3. **True surplus: $4,000**. Only now does the waterfall run:
-   - **1% Founder's Fee** ($40): to XRP wallet `rf82s1CDagppvM6ATqc1nSrL6GackzHJrm` with memo `2621443948` — 1% of *net profit*, exactly as chartered; a loss-making month pays no fee because there is no profit to take 1% of
-4. **The remaining surplus allocates by the hub's health** (measured as *runway*: months of reserves at the current burn rate):
-   - **Critical** (under 3 months runway): 100% rebuilds reserves — survival before generosity
-   - **Rebuilding** (3–6 months): half rebuilds reserves; the rest splits between members and local reinvestment
-   - **Healthy** (6+ months): **50% → members** by CCI merit, **20% → local reinvestment**, **10% → the global expansion fund**, **~20% → reserves**
-5. **Prudence cap**: reserves beyond 12 months of runway overflow into the expansion fund — money beyond prudence builds the next hub instead of sitting idle
-
-Every period closes with a conservation audit: revenue = expenses + fees + distributions + funds held, **exactly**, with no rounding dust lost — enforced in code and battle-tested across simulated 500-period boom/bust economies.
-
-#### How the Network Expands
-
-Growth is **earned, not hoped for**. A hub may seed a new hub only when all of these hold, enforced in code:
-- the expansion fund fully covers the seed cost — reserves are never touched
-- the hub is currently Healthy (6+ months runway)
-- the last 3 closed periods were **all** profitable and Healthy — one good month is not a track record, and a single loss resets the clock
-
-This makes the network self-replicating from genuine surplus: every new hub is born from proof that the model works, and expansion can never endanger the hub that funds it.
-
-#### The Network Layer: Growth Flows From Strength
-
-The network module coordinates the whole fleet of hubs:
-
-- **Sponsor ranking**: when the network expands, the sponsor is chosen by a deterministic ranking — longest current streak of profitable, Healthy periods first, then largest expansion fund. Any member can recompute the ranking and verify the choice; there is no discretion to lobby.
-- **Hubs are firewalled**: each hub's obligations are its own. One hub's insolvency cannot draw a single unit from another hub's reserves. Money crosses between hubs at exactly one moment — seeding — and only from an expansion fund that exists because of sustained surplus.
-- **Network-wide conservation**: every seed leaving a sponsor arrives as founding capital in exactly one child, and the network audit proves the totals match while every hub's own books conserve.
-- **Permanent lineage**: every hub records who seeded it. The family tree is acyclic by construction (a parent must exist before its child), and generation numbers track how far the model has replicated from its roots.
-
-### The CCI System: Fair Credit for What You Do
-
-The most innovative part is the **Creative Contribution Index (CCI)**—think of it as "proof of work" for creative contributions. It is **pure merit**: your score is a function of the work you did and how independent peers judged its quality. Nothing about *who you are* ever enters the math—no identity bonuses, no favoritism in any direction. The same formula means the same thing in LA, Mumbai, Berlin, or Lagos.
-
-#### How It Works:
-
-**Sarah directs a film at the studio:**
-- 200 hours of verified work × median peer-reviewed impact 0.9
-- **Total: 180 CCI points**
-
-**Marcus does sound design:**
-- 80 hours × median peer-reviewed impact 0.85
-- **Total: 68 CCI points**
-
-**When profits are distributed:**
-- Sarah gets 73% of the member share (180 ÷ 248 total points)
-- Marcus gets 27% (68 ÷ 248 total points)
-
-#### Why It Can't Be Gamed or Corrupted:
-
-- **Peer-reviewed impact**: quality scores come from the *median* of at least 3 independent reviews. A single inflated (or hostile) review cannot move the median, and small collusion rings are far less effective than against an average.
-- **Conflict-of-interest rules**: you cannot review your own work, and contributors on a project cannot review each other's work on that project.
-- **Hour caps**: no single entry can claim more hours than the calendar allows, so nobody out-claims the clock.
-- **Deterministic math**: the same ledger always produces the same scores. Any member can recompute every distribution and check it, byte for byte.
-- **Tamper-evident ledger**: contributions form a hash chain—quietly rewriting any past entry invalidates everything after it, and the built-in audit catches it.
-
-And it keeps working for **residuals**—if that film makes money years later, Sarah and Marcus still get their fair share based on their CCI contribution.
-
-### DeFi Treasury: Making Money Work Smarter
-
-Instead of letting cash sit in a bank account earning 0.1% interest, the treasury module:
-
-1. **Deploys to DeFi protocols** (Aave, Compound, Yearn Finance) earning 4-6% APY
-2. **Automatically diversifies** across currencies (USD, EUR, XRP) and protocols
-3. **Runs AI risk analysis** to avoid volatile positions
-4. **Rebalances quarterly** based on market conditions
-
-**Example**: Studio has $500K in reserves
-- Traditional bank: Earns $500/year (0.1%)
-- Studio Commons DeFi: Earns $25,000/year (5% average)
-- **Extra $24,500 goes back to members and reinvestment**
-
-### Global Operations: One System, Many Hubs
-
-The compliance module makes Studio Commons work **anywhere in the world**:
-
-- **LA Studio**: Complies with IRS tax rules, SAG-AFTRA union rates, California employment law
-- **Mumbai Studio**: Follows Indian IT Act, GST regulations, FWICE union standards, accepts INR payments
-- **Berlin Studio**: Meets GDPR data requirements, German tax law, Ver.di union agreements, processes in EUR
-
-**Same codebase, automatically adapts**. A filmmaker can be a member in LA, work on a project in Mumbai, and get paid in Berlin—their CCI score and membership follows them globally.
-
-### Production Tools: AI That Helps, Doesn't Replace
-
-The production module provides tools that make filmmaking accessible:
-
-1. **Virtual Stages**: Use AI-powered virtual sets instead of expensive physical builds
-   - **60% cost reduction** compared to traditional stages
-   - Real-time AR/VR collaboration for remote teams
-
-2. **Ethical AI Generation**: Need concept art? VFX elements? Storyboards?
-   - **Consent is mandatory**: Code enforces that you can't generate content without verifying you have rights
-   - **Attribution is tracked**: If AI assists, it's logged and credited
-   - **No job replacement**: Tools augment human creativity, not replace it
-
-3. **Smart Scheduling**: AI predicts studio usage and optimizes bookings
-   - Fewer conflicts, better utilization
-   - Predictive maintenance (fix equipment before it breaks)
-
-### Real-World Example: A Film From Start to Finish
-
-**"The Last Light" - Independent Sci-Fi Film**
-
-1. **Director Maria** joins Studio Commons LA ($50/month dues)
-
-2. **Books virtual stage** for 10 days ($300/day vs $2,000/day at traditional studio)
-   - Saves $17,000 immediately
-   - Uses AI tools to create alien world backgrounds
-
-3. **Assembles crew** (all Studio Commons members):
-   - Cinematographer, sound designer, editor, actors
-   - Each books equipment and editing suites at cost-share prices
-
-4. **CCI tracking** runs automatically:
-   - Maria: 300 hours (directing) = 270 base points
-   - Cinematographer: 200 hours = 180 points
-   - Sound designer: 100 hours = 90 points
-   - etc.
-
-5. **Film is completed** for $80K (would cost $300K+ at traditional studio)
-
-6. **Film gets distribution** deal, earns $500K
-
-7. **Revenue sharing** (automated by payments module):
-   - $5K (1%) → Founder's XRP wallet (platform development)
-   - $247.5K (50%) → Distributed to crew based on CCI scores
-     - Maria gets ~$74K (based on her 270 points)
-     - Cinematographer gets ~$50K
-     - etc.
-   - $148.5K (30%) → Studio Commons reinvestment
-     - New cameras purchased
-     - Grants for emerging filmmakers
-   - $99K (20%) → Reserves
-
-8. **Years later**, film keeps earning from streaming
-   - **Residuals automatically paid** to all contributors based on their original CCI scores
-   - No negotiating, no forgotten credits, no "Hollywood accounting"
-
-### The Analytics Advantage
-
-The analytics module tells you what's working:
-
-- **Predictive Impact**: "Based on current trends, this hub will generate $1.9M revenue and support 150 jobs next year"
-- **Fairness Metrics**: "Reward concentration (Gini) is 0.32 with 98% member participation—rewards are tracking contributions, not cliques ✓" (fully identity-blind: the system never collects demographic data)
-- **Economic Multiplier**: "Every $1 spent at Studio Commons generates $2.50 in local economic activity"
-
-Communities can make **data-driven decisions** about expansions, investments, and priorities.
-
-### Why This Matters
-
-**Traditional Studio Model:**
-- Owner invests $5M, extracts $10M in profits
-- Crew gets day rates, no ownership, no residuals
-- No community benefit
-
-**Studio Commons Model:**
-- Community invests together (members + DeFi yields)
-- Profits shared fairly based on contributions
-- Wealth stays in community, funds more projects
-- **Sustainable, scalable, replicable globally**
-
-### The Code Makes It Possible
-
-Without software, this would be impossible to manage:
-
-- **Governance Module**: Handles voting with thousands of members across time zones
-- **Treasury Module**: Manages complex DeFi operations no human could track manually
-- **CCI Module**: Calculates fair contributions across hundreds of projects and contributors
-- **Payments Module**: Processes multi-currency payments and distributions automatically
-- **Compliance Module**: Navigates different legal systems in real-time
-- **Analytics Module**: Provides insights from massive datasets
-
-**This platform turns a beautiful but complex idea into working reality.**
+The result is a network that self-replicates from genuine surplus — every new hub exists because the model demonstrably worked somewhere else first.
 
 ---
 
-## Table of Contents
-- [How Studio Commons Actually Works](#how-studio-commons-actually-works)
-- [Features](#features)
-- [Why Studio Commons?](#why-studio-commons)
-- [Tech Stack](#tech-stack)
-- [Installation](#installation)
-- [Usage](#usage)
-- [Project Structure](#project-structure)
-- [Founder's Fee](#founders-fee)
-- [Contributing](#contributing)
-- [Roadmap](#roadmap)
-- [License](#license)
-- [Contact](#contact)
+## Why You Can Actually Trust This
 
-## Features
+Claims like the above are cheap. Here's what backs them:
 
-- **Global Ownership**: Stewardship + community shares with regional adapters for worldwide deployment
-- **Intelligent Treasury**: Multi-currency DeFi integration (Aave, Compound, Yearn) with 4-6% yields; automated 1% founder's fee to XRP wallet `rf82s1CDagppvM6ATqc1nSrL6GackzHJrm` (memo: `2621443948`)
-- **CCI (Creative Contribution Index)**: merit-based contribution tracking — verified hours × median peer-reviewed impact on a tamper-evident ledger — for fair residuals distribution
-- **Production AI**: Virtual/AR stages (60% cost reduction), ethical generative tools with consent enforcement
-- **Fiscal Engine**: costs-first accounting with exact integer conservation, runway-based health states, debt-before-profit recovery, and an expansion fund that seeds new hubs only from sustained surplus
-- **Hub Network**: deterministic strongest-sponsor expansion, firewalled hub finances, seed-capital conservation across the fleet, and permanent acyclic lineage
-- **Membership**: Portable global memberships with seamless cross-hub transfers
-- **Compliance**: Auto-adapts to worldwide laws (GDPR, Indian IT Act, US IRS, etc.)
-- **Analytics**: Predictive forecasting for economic and cultural impact
-- **Carbon Tracking**: Net-zero commitment with automated carbon offset calculations
+- **It's all code, and it's all open.** AGPL-3.0 means every deployment — including hosted ones — must publish its source. There is no proprietary fork where the rules quietly change.
+- **Deterministic everything.** Scores, payouts, sponsor rankings, audits: same inputs, same outputs, byte for byte. Any member, anywhere, can recompute any decision and check it.
+- **Battle-tested, adversarially.** The test suite doesn't just check that things work — it *attacks* them: shill reviews, saboteur reviews, double votes, review rings, entry splitting, hour-cap probing, NaN injection, rounding attacks up to `u128::MAX`, ledger tampering and truncation, bleed-the-hub-dry sequences, flash-prosperity expansion attempts, and multi-hundred-period boom/bust fuzz economies asserting conservation after every single period. Several of those attacks found real flaws during development; the fixes and the attacks are both in the repo.
+- **Exact integer arithmetic.** All money is integer minor units with basis-point math. No floating-point drift, no rounding dust silently lost — remainders are routed to reserves by design.
 
-## Why Studio Commons?
+Run the proof yourself:
 
-Studio Commons addresses systemic inequities in the creative industry:
+```bash
+cargo test --all
+```
 
-- **Access Barriers**: Democratizes expensive production infrastructure
-- **Wealth Extraction**: Keeps profits in the community (50% to members, 30% reinvestment, 20% reserves)
-- **Tech Displacement**: Ethical AI that augments rather than replaces human creativity
-- **Favoritism**: Pure merit — rewards follow verified work and peer-judged quality, identity-blind by construction, with capture detection to keep it that way
+---
 
-**Target Impact:**
-- $1.9M Year 3 revenue per hub
-- 13% community ROI
-- 5,000+ community-owned projects by 2030
-- $1B recirculated globally
+## How It Fits Together
+
+| Layer | Question it answers | Guarantee |
+|---|---|---|
+| **CCI** (`src/cci`) | Who earned what? | Identity-blind merit on a tamper-evident ledger |
+| **Fiscal engine** (`src/economics`) | What's safe to pay? | Costs first, debts before profit, exact conservation |
+| **Network** (`src/network`) | Where does growth go? | Strongest proven hub sponsors, firewalled, seed-conserved |
+| **Governance** (`src/governance`) | Who decides policy? | DAO voting, licensed hubs, open-access standards |
+| **Payments** (`src/payments`) | How does money move? | Multi-currency processing, XRPL founder fee |
+| **Treasury** (`src/treasury`) | What do idle funds do? | DeFi yield deployment, risk analytics, carbon tracking |
+| **Membership** (`src/membership`) | Who's in? | Portable global IDs, regional pricing |
+| **Compliance** (`src/compliance`) | Is it legal here? | Per-jurisdiction adapters (GDPR, IT Act, IRS, …) |
+| **Analytics** (`src/analytics`) | Is it staying fair? | Identity-blind reward-concentration (Gini) capture detection |
+
+### A month in the life of a hub
+
+1. Revenue comes in: stage rentals, memberships, project services — recorded to the period.
+2. Members log contributions to the CCI ledger; independent peers review them; medians settle scores.
+3. The period closes: expenses paid first, past debts settled, then the health-gated waterfall — founder's fee (1% of *net profit*), member distributions by CCI share, reinvestment, expansion, reserves.
+4. The conservation audit publishes: every unit accounted for, recomputable by anyone.
+5. When the hub has earned it — 6+ months runway, 3 straight healthy profitable periods — its expansion fund can seed the next city.
+
+### A film, end to end
+
+Maria directs an indie feature at her hub. Every crew member's hours land on the CCI ledger, peer-reviewed as they go. The film wraps, gets distribution, earns $500K. The waterfall runs: the hub's costs on the project are covered, then the crew's shares are computed from the same ledger entries — Maria's 270 points against the project's total — and paid. Five years later a streamer licenses it: **the same ledger recomputes the same proportions and everyone is paid again.** Nobody negotiates, nobody is forgotten, nobody's cousin in accounting decides the film "lost money."
+
+---
+
+## Founder's Fee
+
+The platform carries a hardcoded 1% fee on **net profits** (never on revenue, never on loss-making periods) to fund ongoing development:
+
+- **XRP Wallet**: `rf82s1CDagppvM6ATqc1nSrL6GackzHJrm`
+- **Memo**: `2621443948`
+- **Verification**: `PaymentsSystem::verify_founder_config()` — the configuration is compile-time constant and every fee transaction is logged and auditable.
+
+One fee, visible in the source, applied by the same exact math as everything else. Compare that to the fee structure of any studio, label, or platform you've ever worked with.
 
 ## Tech Stack
 
-- **Backend**: Rust (safety/performance), Go (microservices)
-- **Blockchain**: Substrate/Polkadot (governance), XRPL (payments)
-- **Frontend**: React/Vue/Web3.js
-- **AI/ML**: Tract/TensorFlow.js, Hugging Face
-- **Storage**: IPFS (decentralized), PostgreSQL (operations)
-- **DeFi**: Integration with Aave, Compound, Yearn Finance
-- **Compliance**: Multi-jurisdiction adapters (GDPR, CCPA, IT Act)
+- **Core**: Rust — the entire economic engine, tested workspace of 10 crates
+- **Blockchain**: XRPL (payments), Substrate/Polkadot (governance, planned)
+- **DeFi**: Aave, Compound, Yearn integration for treasury yield
+- **Storage**: IPFS (decentralized), PostgreSQL (operational)
+- **Frontend**: React/Web3.js dashboard (in progress)
 
 ## Installation
 
-### Prerequisites
-
-- Rust 1.70+ ([install](https://rustup.rs/))
-- Cargo (comes with Rust)
-
-### Build from Source
+Prerequisites: Rust 1.70+ ([install](https://rustup.rs/)). Windows users: see [WINDOWS_INSTALL.md](WINDOWS_INSTALL.md).
 
 ```bash
-# Clone the repository
 git clone https://github.com/Tokeloshe/studio-commons.git
 cd studio-commons
-
-# Build the project
 cargo build --release
-
-# Run tests
-cargo test
-
-# Run the application
+cargo test --all      # run the full battle-test suite
 cargo run --release
 ```
 
-### Environment Configuration
-
-Set the region for your hub:
+Configure your hub's region:
 
 ```bash
-export STUDIO_REGION=LA  # Options: LA, NYC, MUMBAI, BERLIN, LAGOS, etc.
+export STUDIO_REGION=LA   # LA, NYC, MUMBAI, BERLIN, LAGOS, ...
 cargo run --release
-```
-
-## Usage
-
-### Command Line Interface
-
-```bash
-# Start the Studio Commons platform
-cargo run --release
-
-# Run for a specific region
-STUDIO_REGION=MUMBAI cargo run --release
-
-# Run tests for all modules
-cargo test --all
-
-# Run tests for a specific module
-cargo test -p payments
-cargo test -p governance
-```
-
-### Basic Operations
-
-**Join as a Member:**
-```rust
-use membership::MembershipSystem;
-
-let mut membership = MembershipSystem::new("LA")?;
-let member_id = membership.global_join(
-    "Artist Name".to_string(),
-    5000, // dues in cents
-    Region::LA
-)?;
-```
-
-**Process Revenue (with automatic founder's fee):**
-```rust
-use payments::PaymentsSystem;
-
-let mut payments = PaymentsSystem::new()?;
-let allocation = payments.process_global_revenue(
-    StreamType::Rental,
-    100000, // $1000.00
-    Currency::USD
-)?;
-// Automatically sends 1% to XRP wallet rf82s1CDagppvM6ATqc1nSrL6GackzHJrm
-```
-
-**Book Virtual Stage:**
-```rust
-use production::ProductionSystem;
-
-let mut production = ProductionSystem::new("LA")?;
-let booking = production.ai_virtual_stage(project, true)?; // AR mode
-// Saves 60-65% vs traditional stages
 ```
 
 ## Project Structure
@@ -369,169 +147,50 @@ let booking = production.ai_virtual_stage(project, true)?; // AR mode
 studio-commons/
 ├── Cargo.toml              # Workspace configuration
 ├── src/
-│   ├── main.rs            # Main application entry point
-│   ├── governance/        # DAO voting, licensing, standards
-│   ├── treasury/          # DeFi integration, distributions
-│   ├── cci/               # Creative Contribution Index
-│   ├── production/        # AI tools, virtual stages
-│   ├── membership/        # Global member management
-│   ├── payments/          # Revenue processing + founder's fee
+│   ├── main.rs            # Application entry point
+│   ├── cci/               # Merit ledger: peer-reviewed, hash-chained, identity-blind
 │   ├── economics/         # Fiscal engine: costs-first waterfall, runway health, expansion fund
 │   ├── network/           # Hub fleet: sponsor ranking, firewalled seeding, lineage
-│   ├── analytics/         # Predictive intelligence
-│   ├── compliance/        # Global legal adapters
-│   └── utils/             # Common utilities
-├── frontend/              # Web interface (future)
-├── contracts/             # Smart contracts (future)
-├── adapters/              # Regional adapters (future)
-└── README.md
+│   ├── governance/        # DAO voting, licensing, open-access standards
+│   ├── payments/          # Revenue processing + founder's fee
+│   ├── treasury/          # DeFi integration, risk, carbon tracking
+│   ├── membership/        # Global member management
+│   ├── analytics/         # Fairness (Gini/capture) + impact forecasting
+│   ├── compliance/        # Per-jurisdiction legal adapters
+│   └── utils/             # Shared types
 ```
 
-## Founder's Fee
+## Status & Roadmap
 
-**IMPORTANT:** This platform includes a hardcoded 1% perpetual founder's fee on all net profits to support ongoing development and vision.
+**Now**: the full economic core — merit ledger, fiscal engine, network layer, governance, payments — implemented and battle-tested in Rust. This is the part that had to be right first, because it's the part the industry gets wrong on purpose.
 
-- **XRP Wallet**: `rf82s1CDagppvM6ATqc1nSrL6GackzHJrm`
-- **Memo**: `2621443948`
-- **Amount**: 1% of net profits (after expenses)
-- **Transparency**: All transactions are logged and auditable
-- **Immutability**: Hardcoded in `src/payments/src/lib.rs`
+**Next**:
+- Web dashboard (React) so members see their ledger, shares, and hub health live
+- XRPL + Substrate integration to anchor ledger head-hashes and execute real payouts
+- LA pilot hub deployment
+- Mobile apps; additional jurisdiction adapters
 
-This fee is automatically calculated and processed by the `PaymentsSystem::perpetual_founder_fee()` function on every revenue distribution.
-
-### Verification
-
-You can verify the founder's fee configuration:
-
-```rust
-use payments::PaymentsSystem;
-
-let (wallet, memo, percentage) = PaymentsSystem::verify_founder_config();
-assert_eq!(wallet, "rf82s1CDagppvM6ATqc1nSrL6GackzHJrm");
-assert_eq!(memo, "2621443948");
-assert_eq!(percentage, 1.0);
-```
+**The goal**: a global network of community-owned studios where the second hub is seeded by the first hub's proven surplus, the tenth by the strongest of the nine — and every artist in every one of them holds a permanent, tamper-evident claim on the value of their work.
 
 ## Contributing
 
-We welcome contributions from the global community!
+Contributions welcome — the standards are the same as the code's: tests for every feature, `cargo test --all` green, and any change to economic logic must come with battle tests that attack it.
 
-### How to Contribute
-
-1. **Fork** the repository
-2. **Create** a feature branch (`git checkout -b feature/amazing-feature`)
-3. **Commit** your changes (`git commit -m 'Add amazing feature'`)
-4. **Push** to the branch (`git push origin feature/amazing-feature`)
-5. **Open** a Pull Request
-
-### Development Guidelines
-
-- Write tests for all new features
-- Follow Rust best practices and idioms
-- Document public APIs
-- Ensure all tests pass: `cargo test --all`
-- Consider regional adapters for global features
-- Maintain the founder's fee configuration integrity
-
-### Areas for Contribution
-
-- Regional compliance adapters (new jurisdictions)
-- Frontend development (React/Vue dashboard)
-- Smart contract development (Substrate/XRPL)
-- AI/ML model integration
-- Translation and localization
-- Documentation improvements
-
-## Roadmap
-
-### v1.0 (Q1 2026) - Pilot Launch
-- ✅ Core governance module
-- ✅ Treasury with DeFi integration
-- ✅ CCI tracking system
-- ✅ Payments with founder's fee
-- ✅ Multi-region compliance
-- 🔄 LA pilot deployment
-- 🔄 Web dashboard
-
-### v2.0 (Q3 2026) - Global Expansion
-- Multi-hub operations (LA, NYC, Mumbai)
-- Advanced AI production tools
-- Blockchain governance (Substrate)
-- Mobile app (iOS/Android)
-
-### v3.0 (2027) - Full Scale
-- Metaverse integration
-- 10+ global hubs
-- $10M+ treasury
-- Autonomous AI management
-- 5,000+ projects
-
-### Long-Term Vision (2030)
-- 50+ global hubs
-- $1B economic impact
-- 100,000+ members
-- Industry standard for creative commons
-
-## Testing
-
-Run the comprehensive test suite:
-
-```bash
-# All tests
-cargo test --all
-
-# Module-specific tests
-cargo test -p governance
-cargo test -p treasury
-cargo test -p cci
-cargo test -p production
-cargo test -p membership
-cargo test -p payments
-cargo test -p analytics
-cargo test -p compliance
-
-# With output
-cargo test -- --nocapture
-
-# Release mode (faster)
-cargo test --release
-```
+1. Fork → feature branch → tests → PR.
+2. High-impact areas: jurisdiction adapters, the React dashboard, XRPL/Substrate integration, localization.
 
 ## License
 
-This project is licensed under the **GNU Affero General Public License v3.0 (AGPL-3.0)**.
-
-This means:
-- ✅ You can use, modify, and distribute this software
-- ✅ You must share your modifications under the same license
-- ✅ You must disclose source code for any network services
-- ✅ Perfect for community-owned infrastructure
-
-See [LICENSE](LICENSE) for full details.
+**AGPL-3.0** — use it, modify it, deploy it; but every deployment, including network services, must publish its source under the same license. Community infrastructure that cannot be quietly enclosed.
 
 ## Contact
 
 - **Creator**: [@e_honiball](https://x.com/e_honiball) on X
-- **Repository**: [github.com/Tokeloshe/studio-commons](https://github.com/Tokeloshe/studio-commons)
 - **Issues**: [GitHub Issues](https://github.com/Tokeloshe/studio-commons/issues)
 - **Discussions**: [GitHub Discussions](https://github.com/Tokeloshe/studio-commons/discussions)
-
-## Acknowledgments
-
-This platform stands on the shoulders of:
-- The open-source community
-- Decentralized technology pioneers
-- Creative commons advocates
-- Global cooperative movements
 
 ---
 
 **Built for a new age of global creation.**
 
-*"Reclaiming creative infrastructure for the artists who make it possible."*
-
----
-
-**Last updated**: November 15, 2025
-**Version**: 1.0.0
-**Status**: Active Development
+*"The industry runs on trust and breaks it for profit. Infrastructure shouldn't need trust."*
