@@ -76,6 +76,8 @@ Three rules you must internalize now, because they are not negotiable later:
 
 ## Phase 2 — Incorporate and adopt the constitution (weeks 4–8)
 
+*(What follows is a playbook, not legal advice — entity law varies by jurisdiction, and the one hour with a real co-op lawyer at the end of this phase is the actual requirement.)*
+
 1. **Pick the entity type your jurisdiction supports:** worker/multi-stakeholder cooperative where available (best fit), else a nonprofit association or member-owned LLC. What matters is: one member interest = tied to contribution, board answerable to members, surplus distributable per your bylaws.
 2. **Write the software's rules into your bylaws.** This is the crucial step that makes the code legally binding rather than advisory. Your bylaws should state:
    - Member compensation from surplus is computed by the CCI ledger (verified hours × median of ≥3 independent peer reviews), as implemented in the deployed version of this software.
@@ -95,6 +97,7 @@ Start smaller than your ambition:
 
 1. **Launch with the minimum viable offering** your committed dues sustain. Gear library + booking calendar beats an empty soundstage you can't heat.
 2. **Record everything in the engine from day one.** Every due, every rental, every expense, in real time. The period-close reports become your member meetings' agenda: revenue, costs, surplus, health state, runway — one screen, no interpretation.
+   **And reconcile it monthly**: a rotating member (never the bookkeeper) compares the engine's entries against the actual bank statement before the period report is accepted. The conservation audit proves the books are internally exact; the reconciliation proves they match reality. You need both — the second one is the honest answer to "what if the bookkeeper lies?", and rotating it means trust never concentrates in one person.
 3. **Start the CCI ledger immediately**, including for the founding work itself. Building shelves, writing the booking system, running the open house — log it, get it peer-reviewed. When your hub reaches Healthy and the first member distribution runs, the people who built the place get paid for having built it. This is how you compensate founders *without* founder equity: the ledger remembers.
 4. **Recruit reviewers across crafts.** CCI requires ≥3 independent reviews per contribution, and project collaborators can't review each other's work on that project. Small hubs should twin with another hub (or a remote circle of members) early to keep the review pool honest — the median-of-independents is your defense against both cliques and grudges.
 
@@ -134,6 +137,7 @@ A hub you seed carries your lineage forever in its ledger, and seeds its own chi
 |---|---|---|
 | Continuous | Record revenue/expenses; members log CCI contributions | Bookkeeper role; every member |
 | Weekly | Peer reviews assigned and completed | Review circle |
+| Monthly | Bank-statement reconciliation against engine entries | Rotating member (never the bookkeeper) |
 | Monthly | `close_period` → publish report + conservation audit + ledger head-hash | Bookkeeper, verified by any member |
 | Monthly | Member meeting: the period report *is* the agenda | Everyone |
 | Quarterly | Governance votes (pricing, purchases, policy) via the governance module | Everyone |
@@ -160,7 +164,7 @@ A hub you seed carries your lineage forever in its ledger, and seeds its own chi
 
 ## Start today, with nothing
 
-The zero-cost first step: fork the repo, run `cargo test --all`, and watch several thousand adversarial attacks on the economics fail on your own machine. Then send this document to five people in your city.
+The zero-cost first step: fork the repo, run `cargo test --all`, and watch the full adversarial suite — around 90 tests, including simulated decades of boom-and-bust economies checked for exact conservation after every period — fail to break the economics on your own machine. Then send this document to five people in your city.
 
 You do not need our permission. You do not need our blessing. You need a room full of people who make things and are done being taken.
 

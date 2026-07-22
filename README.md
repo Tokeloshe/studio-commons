@@ -6,7 +6,7 @@
 
 **The creative industry has a trust problem. This is infrastructure that removes the need for trust.**
 
-Studio Commons is community-owned studio infrastructure where crediting, payment, solvency, and growth are enforced by open-source code instead of promises — auditable by any member, gameable by no one. Written in Rust, licensed AGPL-3.0, so no one can take it private.
+Studio Commons is community-owned studio infrastructure where crediting, payment, solvency, and growth are enforced by open-source code instead of promises — every rule deterministic, every decision recomputable by any member, and every known way to cheat either blocked or made detectable. Rust core; AGPL-3.0, so every deployment (including hosted ones) must publish its source.
 
 > ### 🚀 Want a studio like this in your city?
 > **You don't need our permission — that's the point.** The complete playbook, from zero commitments to a running hub that seeds the next city, is here:
@@ -71,7 +71,7 @@ Claims like the above are cheap. Here's what backs them:
 
 - **It's all code, and it's all open.** AGPL-3.0 means every deployment — including hosted ones — must publish its source. There is no proprietary fork where the rules quietly change.
 - **Deterministic everything.** Scores, payouts, sponsor rankings, audits: same inputs, same outputs, byte for byte. Any member, anywhere, can recompute any decision and check it.
-- **Battle-tested, adversarially.** The test suite doesn't just check that things work — it *attacks* them: shill reviews, saboteur reviews, double votes, review rings, entry splitting, hour-cap probing, NaN injection, rounding attacks up to `u128::MAX`, ledger tampering and truncation, bleed-the-hub-dry sequences, flash-prosperity expansion attempts, and multi-hundred-period boom/bust fuzz economies asserting conservation after every single period. Several of those attacks found real flaws during development; the fixes and the attacks are both in the repo.
+- **Battle-tested, adversarially.** Alongside the unit tests, a dedicated attack suite tries to break the system the way a bad actor would: shill reviews, saboteur reviews, double votes, review rings, entry splitting, hour-cap probing, NaN injection, rounding attacks up to `u128::MAX`, ledger tampering, bleed-the-hub-dry sequences, flash-prosperity expansion attempts, and deterministic multi-hundred-period boom/bust fuzz economies that assert conservation after every single simulated period. Around 90 tests in total — and several of those attacks found real flaws during development. The fixes *and* the attacks that found them are both in the repo, because a system that hides its failure history is asking you to trust it, and the whole point here is that you shouldn't have to.
 - **Exact integer arithmetic.** All money is integer minor units with basis-point math. No floating-point drift, no rounding dust silently lost — remainders are routed to reserves by design.
 
 Run the proof yourself:
@@ -80,7 +80,19 @@ Run the proof yourself:
 cargo test --all
 ```
 
-> **Two minutes, zero cost, no signup:** clone the repo, run the command above, and watch every adversarial attack on the economics fail on your own machine. Then read **[the founding guide](FOUNDING_A_HUB.md)** and decide what your city deserves.
+> **Two minutes, zero cost, no signup:** clone the repo, run the command above, and watch the full attack suite fail to break the economics on your own machine. Then read **[the founding guide](FOUNDING_A_HUB.md)** and decide what your city deserves.
+
+### What this does NOT solve — read before you flame us
+
+A system that claims to fix trust owes you its limits up front:
+
+- **The oracle problem.** The conservation audit proves the books are *internally* consistent — it cannot prove that the revenue your bookkeeper typed in matches reality. Code can't see your bank account. Mitigation: the founding guide mandates monthly reconciliation of engine inputs against bank statements by a rotating member, and the deterministic books make any divergence easy to localize once spotted. But the entry point for real-world data is, and always will be, a human.
+- **Majority collusion beats the median.** The median-of-3+ review defeats one shill or one saboteur, and conflict-of-interest rules make rings expensive — but if a majority of a contribution's reviewers collude, they win. Small hubs are most exposed, which is why the guide tells them to twin their review pools with another hub. Honest framing: we made capture *costly and detectable* (the Gini capture-warning exists for exactly this), not impossible. Nothing makes it impossible.
+- **Hours are attested, not surveilled.** The engine caps and audits hour claims, and peer review scores the *output* — but nobody's timing your keystrokes. A community whose members grossly inflate hours has a culture problem no ledger fixes.
+- **The ledger hash is not yet cryptographic.** The chain currently uses a fast non-cryptographic hash — fine for catching accidental corruption and casual tampering, forgeable by a determined attacker with storage access. The design anticipates swapping in SHA-256 and anchoring head-hashes externally (that's why `head_hash()` exists); until that lands, the hash chain is a smoke detector, not a vault.
+- **Code isn't law until your bylaws say so.** The engine refusing an improper distribution only binds your co-op if your bylaws bind you to the engine. The founding guide's Phase 2 exists precisely to close this gap — skip it and you have great software and no institution.
+
+If you find a hole not on this list, please [open an issue](https://github.com/Tokeloshe/studio-commons/issues). Breaking this system in public is a contribution.
 
 ---
 
@@ -93,7 +105,7 @@ cargo test --all
 | **Network** (`src/network`) | Where does growth go? | Strongest proven hub sponsors, firewalled, seed-conserved |
 | **Governance** (`src/governance`) | Who decides policy? | DAO voting, licensed hubs, open-access standards |
 | **Payments** (`src/payments`) | How does money move? | Multi-currency processing, XRPL founder fee |
-| **Treasury** (`src/treasury`) | What do idle funds do? | DeFi yield deployment, risk analytics, carbon tracking |
+| **Treasury** (`src/treasury`) | What do idle funds do? | DeFi yield modeling (simulated), risk analytics, carbon tracking |
 | **Membership** (`src/membership`) | Who's in? | Portable global IDs, regional pricing |
 | **Compliance** (`src/compliance`) | Is it legal here? | Per-jurisdiction adapters (GDPR, IT Act, IRS, …) |
 | **Analytics** (`src/analytics`) | Is it staying fair? | Identity-blind reward-concentration (Gini) capture detection |
@@ -114,23 +126,26 @@ Maria directs an indie feature at her hub. Every crew member's hours land on the
 
 ---
 
-## Founder's Fee
+## Founder's Fee — full disclosure
 
-The platform carries a hardcoded 1% fee on **net profits** (never on revenue, never on loss-making periods) to fund ongoing development:
+The reference deployment carries a 1% fee on **net profits** (never on revenue; a loss-making period pays nothing) to fund ongoing development:
 
-- **XRP Wallet**: `rf82s1CDagppvM6ATqc1nSrL6GackzHJrm`
-- **Memo**: `2621443948`
-- **Verification**: `PaymentsSystem::verify_founder_config()` — the configuration is compile-time constant and every fee transaction is logged and auditable.
+- **XRP Wallet**: `rf82s1CDagppvM6ATqc1nSrL6GackzHJrm` · **Memo**: `2621443948`
+- **Verification**: `PaymentsSystem::verify_founder_config()` — a compile-time constant; every fee transaction is logged in the same auditable books as everything else.
 
-One fee, visible in the source, applied by the same exact math as everything else. Compare that to the fee structure of any studio, label, or platform you've ever worked with.
+Being straight with you, because an anti-extraction project owes you this paragraph: yes, this is a fee to the project's creator, and no, it is not technically immutable — this is AGPL code, and a fork can strip it in one line. We're not going to pretend otherwise and hope you don't check. It stays visible in the source, subject to the same exact math as every other flow, and capped at 1% of *profit* — if your hub never profits, we never see a cent. If you run a fork without it, the license permits that; if you keep it, you're funding the commons this came from. We think that trade, stated plainly, survives scrutiny better than any platform's fee page you've ever read.
 
-## Tech Stack
+## Tech Stack — what's real today vs. planned
 
-- **Core**: Rust — the entire economic engine, tested workspace of 10 crates
-- **Blockchain**: XRPL (payments), Substrate/Polkadot (governance, planned)
-- **DeFi**: Aave, Compound, Yearn integration for treasury yield
-- **Storage**: IPFS (decentralized), PostgreSQL (operational)
-- **Frontend**: React/Web3.js dashboard (in progress)
+**Working and tested now (this is the part you can verify with `cargo test --all`):**
+- **Rust workspace, 11 crates**: the CCI merit ledger, the fiscal engine, the network layer, governance voting, payments accounting, membership, analytics — the complete economic rule system, with the adversarial test suite.
+
+**Present as interfaces/simulations, pending real integration (open the code; the stubs are commented as stubs):**
+- **XRPL payments**: fee transactions are computed and logged with correct amounts, but not yet submitted to the ledger — XRPL SDK integration is the bridge to build.
+- **DeFi treasury** (Aave/Compound/Yearn) and **compliance adapters**: modeled with realistic structure, not yet wired to live protocols or legal databases.
+- **Substrate governance anchoring, IPFS storage, React dashboard**: designed for, not started.
+
+We list these separately because nothing erodes trust faster than discovering a stub behind a claim. The economic core came first, deliberately: it's the part the industry gets wrong on purpose, and the part that had to be provably right before anything touches real money.
 
 ## Installation
 
