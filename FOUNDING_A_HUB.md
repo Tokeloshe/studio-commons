@@ -15,7 +15,7 @@ This document exists so that you can do this *without us*. Studio Commons is AGP
 | **[4 — Reach Healthy](#phase-4--reach-healthy-months-418)** | Build 6 months runway, 3 healthy periods | ~1 year | — | Full distributions + sponsor eligibility unlock |
 | **[5 — Seed the next city](#phase-5--seed-the-next-city-year-2)** | Your surplus births the next hub | year 2+ | surplus only | Another city runs because yours worked |
 
-**⚡ Shortest possible first step, right now:** `git clone` this repo and run `cargo test --all`. Zero cost, no signup — and you'll have personally verified every economic rule in this guide before trusting any of it.
+**Shortest possible first step, right now:** `git clone` this repo and run `cargo test --all`. Zero cost, no signup — and you'll have personally verified every economic rule in this guide before trusting any of it.
 
 ---
 

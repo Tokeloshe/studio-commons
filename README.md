@@ -8,9 +8,9 @@
 
 Studio Commons is community-owned studio infrastructure where crediting, payment, solvency, and growth are enforced by open-source code instead of promises — every rule deterministic, every decision recomputable by any member, and every known way to cheat either blocked or made detectable. Rust core; AGPL-3.0, so every deployment (including hosted ones) must publish its source.
 
-> ### 🚀 Want a studio like this in your city?
+> ### Want a studio like this in your city?
 > **You don't need our permission — that's the point.** The complete playbook, from zero commitments to a running hub that seeds the next city, is here:
-> ## **[→ FOUNDING A HUB: The Complete Guide](FOUNDING_A_HUB.md)**
+> ## **[Founding a Hub: The Complete Guide](FOUNDING_A_HUB.md)**
 
 ---
 
@@ -222,4 +222,4 @@ Contributions welcome — the standards are the same as the code's: tests for ev
 
 *"The industry runs on trust and breaks it for profit. Infrastructure shouldn't need trust."*
 
-**Ready?** → **[Found a hub](FOUNDING_A_HUB.md)** · **[Run the proof](#why-you-can-actually-trust-this)** · **[Join the discussion](https://github.com/Tokeloshe/studio-commons/discussions)**
+**[Found a hub](FOUNDING_A_HUB.md)** · **[Run the proof](#why-you-can-actually-trust-this)** · **[Join the discussion](https://github.com/Tokeloshe/studio-commons/discussions)**
