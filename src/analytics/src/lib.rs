@@ -13,7 +13,6 @@ pub struct GlobalMetrics {
     pub total_members: usize,
     pub total_projects: usize,
     pub revenue_usd: u128,
-    pub diversity_percentage: f64,
     pub carbon_offset_tons: f64,
     pub timestamp: DateTime<Utc>,
 }
@@ -30,19 +29,50 @@ pub struct ImpactForecast {
     pub confidence_level: f64,
 }
 
-/// Diversity analytics report
+/// Identity-blind fairness report.
+///
+/// Instead of tracking who members are, this measures whether the system's
+/// *outcomes* are healthy: are rewards spread in proportion to contributions,
+/// or captured by a small clique? The Gini coefficient over earned merit
+/// points answers that without a single demographic data point.
 #[derive(Debug, Clone, Serialize, Deserialize)]
-pub struct DiversityReport {
+pub struct FairnessReport {
     pub timestamp: DateTime<Utc>,
-    pub gender_diversity: f64,
-    pub ethnic_diversity: f64,
-    pub geographic_diversity: f64,
-    pub overall_score: f64,
-    pub meets_40_percent_mandate: bool,
+    /// Gini coefficient of merit-point distribution: 0 = perfectly even,
+    /// 1 = one member captures everything.
+    pub reward_concentration: f64,
+    /// Fraction of members whose earned share is nonzero.
+    pub participation_rate: f64,
+    /// Flags possible capture when concentration exceeds the threshold.
+    pub capture_warning: bool,
 }
+
+/// Concentration above this suggests rewards are pooling in a small group —
+/// a signal for members to audit the ledger, not an automatic judgment.
+pub const CAPTURE_THRESHOLD: f64 = 0.8;
 
 pub struct AnalyticsSystem {
     metrics_history: Vec<GlobalMetrics>,
+}
+
+/// Gini coefficient of a non-negative distribution.
+fn gini(values: &[f64]) -> f64 {
+    let n = values.len();
+    if n == 0 {
+        return 0.0;
+    }
+    let mut sorted: Vec<f64> = values.to_vec();
+    sorted.sort_by(|a, b| a.partial_cmp(b).unwrap());
+    let total: f64 = sorted.iter().sum();
+    if total <= 0.0 {
+        return 0.0;
+    }
+    let weighted: f64 = sorted
+        .iter()
+        .enumerate()
+        .map(|(i, v)| (i as f64 + 1.0) * v)
+        .sum();
+    (2.0 * weighted) / (n as f64 * total) - (n as f64 + 1.0) / n as f64
 }
 
 impl AnalyticsSystem {
@@ -80,34 +110,35 @@ impl AnalyticsSystem {
         Ok(forecast)
     }
 
-    /// Diversity analytics with 40%+ mandate enforcement
-    pub fn diversity_analytics(&self, sample_data: Vec<f64>) -> Result<DiversityReport> {
-        info!("Analyzing diversity metrics");
+    /// Fairness analytics over merit-point totals per member.
+    /// Takes each member's earned points; identities never enter the math.
+    pub fn fairness_analytics(&self, member_points: Vec<f64>) -> Result<FairnessReport> {
+        info!("Analyzing reward-distribution fairness");
 
-        // Simulate diversity calculations
-        let gender_diversity = sample_data.get(0).copied().unwrap_or(45.0);
-        let ethnic_diversity = sample_data.get(1).copied().unwrap_or(42.0);
-        let geographic_diversity = sample_data.get(2).copied().unwrap_or(38.0);
-
-        let overall_score = (gender_diversity + ethnic_diversity + geographic_diversity) / 3.0;
-        let meets_mandate = overall_score >= 40.0;
-
-        let report = DiversityReport {
-            timestamp: Utc::now(),
-            gender_diversity,
-            ethnic_diversity,
-            geographic_diversity,
-            overall_score,
-            meets_40_percent_mandate: meets_mandate,
-        };
-
-        if meets_mandate {
-            info!("✓ Diversity mandate met: {:.1}%", overall_score);
+        let reward_concentration = gini(&member_points);
+        let participation_rate = if member_points.is_empty() {
+            0.0
         } else {
-            info!("✗ Diversity below 40% mandate: {:.1}%", overall_score);
+            member_points.iter().filter(|p| **p > 0.0).count() as f64
+                / member_points.len() as f64
+        };
+        let capture_warning = reward_concentration > CAPTURE_THRESHOLD;
+
+        if capture_warning {
+            info!(
+                "✗ Reward concentration {:.2} exceeds capture threshold — audit recommended",
+                reward_concentration
+            );
+        } else {
+            info!("✓ Reward concentration healthy: {:.2}", reward_concentration);
         }
 
-        Ok(report)
+        Ok(FairnessReport {
+            timestamp: Utc::now(),
+            reward_concentration,
+            participation_rate,
+            capture_warning,
+        })
     }
 
     /// Record metrics snapshot
@@ -160,7 +191,6 @@ mod tests {
             total_members: 1000,
             total_projects: 50,
             revenue_usd: 1000000,
-            diversity_percentage: 45.0,
             carbon_offset_tons: 100.0,
             timestamp: Utc::now(),
         };
@@ -172,24 +202,27 @@ mod tests {
     }
 
     #[test]
-    fn test_diversity_analytics() {
+    fn test_fairness_healthy_distribution() {
         let analytics = AnalyticsSystem::new().unwrap();
 
-        let data = vec![45.0, 42.0, 41.0];
-        let report = analytics.diversity_analytics(data).unwrap();
+        // Rewards roughly proportional to varied contribution levels.
+        let points = vec![80.0, 120.0, 100.0, 90.0, 110.0];
+        let report = analytics.fairness_analytics(points).unwrap();
 
-        assert!(report.meets_40_percent_mandate);
-        assert!(report.overall_score >= 40.0);
+        assert!(!report.capture_warning);
+        assert!(report.participation_rate > 0.99);
     }
 
     #[test]
-    fn test_diversity_mandate_failure() {
+    fn test_fairness_capture_detected() {
         let analytics = AnalyticsSystem::new().unwrap();
 
-        let data = vec![35.0, 30.0, 38.0];
-        let report = analytics.diversity_analytics(data).unwrap();
+        // One member captures nearly everything.
+        let points = vec![10_000.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0];
+        let report = analytics.fairness_analytics(points).unwrap();
 
-        assert!(!report.meets_40_percent_mandate);
+        assert!(report.capture_warning);
+        assert!(report.reward_concentration > CAPTURE_THRESHOLD);
     }
 
     #[test]
@@ -200,7 +233,6 @@ mod tests {
             total_members: 100,
             total_projects: 10,
             revenue_usd: 100000,
-            diversity_percentage: 45.0,
             carbon_offset_tons: 10.0,
             timestamp: Utc::now(),
         };

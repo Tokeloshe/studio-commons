@@ -36,7 +36,7 @@ The governance module runs this like a **democratic organization**:
 - **DAO Voting**: Members vote on major decisions—should we buy new cameras? Should we raise prices? Should we partner with a local film festival? Everyone gets a say, weighted by their contributions.
 
 - **Standards Enforcement**: The code automatically checks that each hub maintains standards:
-  - **40%+ diversity** in membership and projects
+  - **Open access**: membership decided purely on published, objective criteria — never on who you are
   - **Carbon-neutral operations** (tracked and offset)
   - **Fair wages** (meeting local union standards)
   - **Community satisfaction** scores
@@ -62,26 +62,31 @@ This happens **every single month**, automatically, with full transparency.
 
 ### The CCI System: Fair Credit for What You Do
 
-The most innovative part is the **Creative Contribution Index (CCI)**—think of it as "proof of work" for creative contributions.
+The most innovative part is the **Creative Contribution Index (CCI)**—think of it as "proof of work" for creative contributions. It is **pure merit**: your score is a function of the work you did and how independent peers judged its quality. Nothing about *who you are* ever enters the math—no identity bonuses, no favoritism in any direction. The same formula means the same thing in LA, Mumbai, Berlin, or Lagos.
 
 #### How It Works:
 
 **Sarah directs a film at the studio:**
-- 200 hours of work × impact score 0.9 = 180 base points
-- Diversity bonus (she's part of underrepresented group) = 1.15× multiplier
-- Sustainability bonus (carbon-neutral production) = 1.10× multiplier
-- **Total: 229 CCI points**
+- 200 hours of verified work × median peer-reviewed impact 0.9
+- **Total: 180 CCI points**
 
 **Marcus does sound design:**
-- 80 hours × impact score 0.85 = 68 base points
-- Standard multipliers
+- 80 hours × median peer-reviewed impact 0.85
 - **Total: 68 CCI points**
 
 **When profits are distributed:**
-- Sarah gets 77% of the member share (229 ÷ 297 total points)
-- Marcus gets 23% (68 ÷ 297 total points)
+- Sarah gets 73% of the member share (180 ÷ 248 total points)
+- Marcus gets 27% (68 ÷ 248 total points)
 
-**The code tracks all this automatically**, preventing favoritism or bias. And it keeps working for **residuals**—if that film makes money years later, Sarah and Marcus still get their fair share based on their CCI contribution.
+#### Why It Can't Be Gamed or Corrupted:
+
+- **Peer-reviewed impact**: quality scores come from the *median* of at least 3 independent reviews. A single inflated (or hostile) review cannot move the median, and small collusion rings are far less effective than against an average.
+- **Conflict-of-interest rules**: you cannot review your own work, and contributors on a project cannot review each other's work on that project.
+- **Hour caps**: no single entry can claim more hours than the calendar allows, so nobody out-claims the clock.
+- **Deterministic math**: the same ledger always produces the same scores. Any member can recompute every distribution and check it, byte for byte.
+- **Tamper-evident ledger**: contributions form a hash chain—quietly rewriting any past entry invalidates everything after it, and the built-in audit catches it.
+
+And it keeps working for **residuals**—if that film makes money years later, Sarah and Marcus still get their fair share based on their CCI contribution.
 
 ### DeFi Treasury: Making Money Work Smarter
 
@@ -168,7 +173,7 @@ The production module provides tools that make filmmaking accessible:
 The analytics module tells you what's working:
 
 - **Predictive Impact**: "Based on current trends, this hub will generate $1.9M revenue and support 150 jobs next year"
-- **Diversity Metrics**: "Current membership is 45% underrepresented groups—exceeding our 40% mandate ✓"
+- **Fairness Metrics**: "Reward concentration (Gini) is 0.32 with 98% member participation—rewards are tracking contributions, not cliques ✓" (fully identity-blind: the system never collects demographic data)
 - **Economic Multiplier**: "Every $1 spent at Studio Commons generates $2.50 in local economic activity"
 
 Communities can make **data-driven decisions** about expansions, investments, and priorities.
@@ -219,7 +224,7 @@ Without software, this would be impossible to manage:
 
 - **Global Ownership**: Stewardship + community shares with regional adapters for worldwide deployment
 - **Intelligent Treasury**: Multi-currency DeFi integration (Aave, Compound, Yearn) with 4-6% yields; automated 1% founder's fee to XRP wallet `rf82s1CDagppvM6ATqc1nSrL6GackzHJrm` (memo: `2621443948`)
-- **CCI (Creative Contribution Index)**: AI-weighted contribution tracking for fair residuals distribution
+- **CCI (Creative Contribution Index)**: merit-based contribution tracking — verified hours × median peer-reviewed impact on a tamper-evident ledger — for fair residuals distribution
 - **Production AI**: Virtual/AR stages (60% cost reduction), ethical generative tools with consent enforcement
 - **Membership**: Portable global memberships with seamless cross-hub transfers
 - **Compliance**: Auto-adapts to worldwide laws (GDPR, Indian IT Act, US IRS, etc.)
@@ -233,7 +238,7 @@ Studio Commons addresses systemic inequities in the creative industry:
 - **Access Barriers**: Democratizes expensive production infrastructure
 - **Wealth Extraction**: Keeps profits in the community (50% to members, 30% reinvestment, 20% reserves)
 - **Tech Displacement**: Ethical AI that augments rather than replaces human creativity
-- **Cultural Inequity**: Mandated 40%+ diversity representation
+- **Favoritism**: Pure merit — rewards follow verified work and peer-judged quality, identity-blind by construction, with capture detection to keep it that way
 
 **Target Impact:**
 - $1.9M Year 3 revenue per hub

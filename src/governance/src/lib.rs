@@ -73,10 +73,16 @@ pub struct VoteResult {
     pub passed: bool,
 }
 
-/// Global standards metrics
+/// Global standards metrics — universal, identity-blind measures that mean
+/// the same thing in every culture: open access, fair pay, sustainable
+/// operations, and members who are actually satisfied.
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct GlobalMetrics {
-    pub diversity_percentage: f64,
+    /// Percentage of membership applications accepted purely on published,
+    /// objective criteria (dues paid, code of conduct). 100 = fully open.
+    pub open_access_score: f64,
+    /// Percentage of paid roles meeting or exceeding local fair-wage standards.
+    pub fair_wage_compliance: f64,
     pub sustainability_score: f64,
     pub community_satisfaction: f64,
 }
@@ -185,7 +191,9 @@ impl GovernanceSystem {
         Ok(())
     }
 
-    /// Enforce global standards (diversity, sustainability, etc.)
+    /// Enforce global standards: open access, fair wages, sustainability.
+    /// No quotas on who members are — only guarantees on how the hub treats
+    /// everyone who shows up.
     pub fn enforce_global_standards(
         &mut self,
         license_id: LicenseId,
@@ -193,11 +201,11 @@ impl GovernanceSystem {
     ) -> Result<bool> {
         info!("Checking compliance for license: {}", license_id);
 
-        // Enforce 40%+ diversity requirement
-        let diversity_ok = metrics.diversity_percentage >= 40.0;
+        let open_access_ok = metrics.open_access_score >= 95.0;
+        let fair_wage_ok = metrics.fair_wage_compliance >= 100.0;
         let sustainability_ok = metrics.sustainability_score >= 70.0;
 
-        let compliant = diversity_ok && sustainability_ok;
+        let compliant = open_access_ok && fair_wage_ok && sustainability_ok;
 
         // Update license compliance status
         if let Some(license) = self.licenses.iter_mut().find(|l| l.id == license_id) {
@@ -290,7 +298,8 @@ mod tests {
             .unwrap();
 
         let metrics = GlobalMetrics {
-            diversity_percentage: 45.0,
+            open_access_score: 100.0,
+            fair_wage_compliance: 100.0,
             sustainability_score: 80.0,
             community_satisfaction: 90.0,
         };
