@@ -8,6 +8,10 @@
 
 Studio Commons is community-owned studio infrastructure where crediting, payment, solvency, and growth are enforced by open-source code instead of promises — auditable by any member, gameable by no one. Written in Rust, licensed AGPL-3.0, so no one can take it private.
 
+> ### 🚀 Want a studio like this in your city?
+> **You don't need our permission — that's the point.** The complete playbook, from zero commitments to a running hub that seeds the next city, is here:
+> ## **[→ FOUNDING A HUB: The Complete Guide](FOUNDING_A_HUB.md)**
+
 ---
 
 ## The Problems This Kills
@@ -57,6 +61,8 @@ Franchises expand on hype and implode; co-ops stay single-city forever because n
 
 The result is a network that self-replicates from genuine surplus — every new hub exists because the model demonstrably worked somewhere else first.
 
+> **Recognize these problems?** They end when someone in your city decides to end them. **[Start with Phase 0 of the founding guide →](FOUNDING_A_HUB.md#phase-0--prove-the-demand-weeks-14-cost-0)** — it costs nothing and takes four weeks to find out if your city is ready.
+
 ---
 
 ## Why You Can Actually Trust This
@@ -73,6 +79,8 @@ Run the proof yourself:
 ```bash
 cargo test --all
 ```
+
+> **Two minutes, zero cost, no signup:** clone the repo, run the command above, and watch every adversarial attack on the economics fail on your own machine. Then read **[the founding guide](FOUNDING_A_HUB.md)** and decide what your city deserves.
 
 ---
 
@@ -101,6 +109,8 @@ cargo test --all
 ### A film, end to end
 
 Maria directs an indie feature at her hub. Every crew member's hours land on the CCI ledger, peer-reviewed as they go. The film wraps, gets distribution, earns $500K. The waterfall runs: the hub's costs on the project are covered, then the crew's shares are computed from the same ledger entries — Maria's 270 points against the project's total — and paid. Five years later a streamer licenses it: **the same ledger recomputes the same proportions and everyone is paid again.** Nobody negotiates, nobody is forgotten, nobody's cousin in accounting decides the film "lost money."
+
+> **Want Maria's ending for your own crew?** The path from "room full of frustrated creators" to that first automated payout is mapped step by step: **[Founding a Hub →](FOUNDING_A_HUB.md)**
 
 ---
 
@@ -172,6 +182,8 @@ studio-commons/
 
 **The goal**: a global network of community-owned studios where the second hub is seeded by the first hub's proven surplus, the tenth by the strongest of the nine — and every artist in every one of them holds a permanent, tamper-evident claim on the value of their work.
 
+> **The first hub in the network could be yours.** Every generation of this network will trace its lineage to whoever moves first. **[The founding guide is here →](FOUNDING_A_HUB.md)**
+
 ## Contributing
 
 Contributions welcome — the standards are the same as the code's: tests for every feature, `cargo test --all` green, and any change to economic logic must come with battle tests that attack it.
@@ -194,3 +206,5 @@ Contributions welcome — the standards are the same as the code's: tests for ev
 **Built for a new age of global creation.**
 
 *"The industry runs on trust and breaks it for profit. Infrastructure shouldn't need trust."*
+
+**Ready?** → **[Found a hub](FOUNDING_A_HUB.md)** · **[Run the proof](#why-you-can-actually-trust-this)** · **[Join the discussion](https://github.com/Tokeloshe/studio-commons/discussions)**
