@@ -25,6 +25,7 @@ use cci::CCISystem;
 use production::ProductionSystem;
 use membership::MembershipSystem;
 use payments::PaymentsSystem;
+use economics::FiscalEngine;
 use analytics::AnalyticsSystem;
 use compliance::ComplianceSystem;
 
@@ -36,6 +37,7 @@ pub struct StudioCommons {
     pub production: ProductionSystem,
     pub membership: MembershipSystem,
     pub payments: PaymentsSystem,
+    pub economics: FiscalEngine,
     pub analytics: AnalyticsSystem,
     pub compliance: ComplianceSystem,
 }
@@ -55,6 +57,7 @@ impl StudioCommons {
         let production = ProductionSystem::new(region)?;
         let membership = MembershipSystem::new(region)?;
         let payments = PaymentsSystem::new()?;
+        let economics = FiscalEngine::new()?;
         let analytics = AnalyticsSystem::new()?;
 
         Ok(Self {
@@ -64,6 +67,7 @@ impl StudioCommons {
             production,
             membership,
             payments,
+            economics,
             analytics,
             compliance,
         })

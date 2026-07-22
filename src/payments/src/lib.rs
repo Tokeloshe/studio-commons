@@ -109,8 +109,11 @@ impl PaymentsSystem {
             timestamp: Utc::now(),
         };
 
-        // Process founder's fee payment
-        self.perpetual_founder_fee(founder_fee, currency.clone())?;
+        // Process founder's fee payment. Pass the full amount — the fee
+        // percentage is applied inside perpetual_founder_fee. (Passing the
+        // pre-computed fee here used to double-apply the percentage,
+        // recording 0.01% instead of 1%.)
+        self.perpetual_founder_fee(amount, currency.clone())?;
 
         self.allocations.push(allocation.clone());
 

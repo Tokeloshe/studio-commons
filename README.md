@@ -43,22 +43,30 @@ The governance module runs this like a **democratic organization**:
 
 ### How Money Flows (This Is Where the Code Shines)
 
-When the studio makes money from rentals, services, and project support, here's what happens **automatically**:
+The fiscal engine (economics module) closes the books every period with **exact integer arithmetic** — every unit of currency is provably accounted for — and follows one iron rule: **costs come first**. Nothing is "profit" until every bill of the period is paid. Distributing gross revenue is how co-ops die; this engine makes it structurally impossible.
 
-#### Example: Studio Makes $10,000 This Month
+#### Example: Studio Takes In $10,000 This Month, Spends $6,000 Operating
 
-The payments module processes this revenue:
+1. **Expenses are paid first**: rent, wages, insurance, equipment — $6,000
+2. **Debts before profit**: if past periods left unpaid obligations, this period's surplus settles them before anything counts as profit
+3. **True surplus: $4,000**. Only now does the waterfall run:
+   - **1% Founder's Fee** ($40): to XRP wallet `rf82s1CDagppvM6ATqc1nSrL6GackzHJrm` with memo `2621443948` — 1% of *net profit*, exactly as chartered; a loss-making month pays no fee because there is no profit to take 1% of
+4. **The remaining surplus allocates by the hub's health** (measured as *runway*: months of reserves at the current burn rate):
+   - **Critical** (under 3 months runway): 100% rebuilds reserves — survival before generosity
+   - **Rebuilding** (3–6 months): half rebuilds reserves; the rest splits between members and local reinvestment
+   - **Healthy** (6+ months): **50% → members** by CCI merit, **20% → local reinvestment**, **10% → the global expansion fund**, **~20% → reserves**
+5. **Prudence cap**: reserves beyond 12 months of runway overflow into the expansion fund — money beyond prudence builds the next hub instead of sitting idle
 
-1. **1% Founder's Fee**: $100 goes to XRP wallet `rf82s1CDagppvM6ATqc1nSrL6GackzHJrm` with memo `2621443948`
-   - This is hardcoded and supports ongoing platform development
-   - 100% transparent in the blockchain ledger
+Every period closes with a conservation audit: revenue = expenses + fees + distributions + funds held, **exactly**, with no rounding dust lost — enforced in code and battle-tested across simulated 500-period boom/bust economies.
 
-2. **Remaining $9,900 Gets Split**:
-   - **50% ($4,950) → Members**: Distributed based on CCI scores (see below)
-   - **30% ($2,970) → Reinvestment**: New equipment, studio improvements, grants for emerging filmmakers
-   - **20% ($1,980) → Reserves**: Emergency fund, insurance, future-proofing
+#### How the Network Expands
 
-This happens **every single month**, automatically, with full transparency.
+Growth is **earned, not hoped for**. A hub may seed a new hub only when all of these hold, enforced in code:
+- the expansion fund fully covers the seed cost — reserves are never touched
+- the hub is currently Healthy (6+ months runway)
+- the last 3 closed periods were **all** profitable and Healthy — one good month is not a track record, and a single loss resets the clock
+
+This makes the network self-replicating from genuine surplus: every new hub is born from proof that the model works, and expansion can never endanger the hub that funds it.
 
 ### The CCI System: Fair Credit for What You Do
 
@@ -226,6 +234,7 @@ Without software, this would be impossible to manage:
 - **Intelligent Treasury**: Multi-currency DeFi integration (Aave, Compound, Yearn) with 4-6% yields; automated 1% founder's fee to XRP wallet `rf82s1CDagppvM6ATqc1nSrL6GackzHJrm` (memo: `2621443948`)
 - **CCI (Creative Contribution Index)**: merit-based contribution tracking — verified hours × median peer-reviewed impact on a tamper-evident ledger — for fair residuals distribution
 - **Production AI**: Virtual/AR stages (60% cost reduction), ethical generative tools with consent enforcement
+- **Fiscal Engine**: costs-first accounting with exact integer conservation, runway-based health states, debt-before-profit recovery, and an expansion fund that seeds new hubs only from sustained surplus
 - **Membership**: Portable global memberships with seamless cross-hub transfers
 - **Compliance**: Auto-adapts to worldwide laws (GDPR, Indian IT Act, US IRS, etc.)
 - **Analytics**: Predictive forecasting for economic and cultural impact
@@ -357,6 +366,7 @@ studio-commons/
 │   ├── production/        # AI tools, virtual stages
 │   ├── membership/        # Global member management
 │   ├── payments/          # Revenue processing + founder's fee
+│   ├── economics/         # Fiscal engine: costs-first waterfall, runway health, expansion fund
 │   ├── analytics/         # Predictive intelligence
 │   ├── compliance/        # Global legal adapters
 │   └── utils/             # Common utilities
