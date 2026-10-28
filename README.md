@@ -8,6 +8,13 @@
 
 Creative infrastructure — stages, gear, edit suites — owned as a co-op, where crediting, pay, solvency, and growth follow fixed, published rules that any member can verify. The rules are enforced by open-source software, but you can understand every one of them without reading a line of code. This page explains them.
 
+<p align="center">
+  <img src="docs/media/studio-commons.svg" width="100%"
+       alt="Animation: six crew members on a short film are credited by independent peer review, where a shill review cannot move the median and self-review, conflicts of interest and inflated hours are refused; the Los Angeles hub closes its months with bills first, reserves built while runway is short, a loss month absorbed by reserves, then a four-way split once healthy; the members' half is paid by merit with the same shares ten years later; the expansion fund seeds hubs in New York, Berlin, Mumbai, Lagos and São Paulo; and the books conserve to the dollar.">
+  <br>
+  <sub>Every number on screen is computed by the crates in this repo: <code>cargo run --release --example film</code>.</sub>
+</p>
+
 > **Want a studio like this in your city? You don't need our permission — that's the point.**
 > The step-by-step playbook: **[Founding a Hub](FOUNDING_A_HUB.md)**
 
