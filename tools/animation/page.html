@@ -1,0 +1,217 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Studio Commons · A studio owned by the people who use it</title>
+<meta name="description" content="Creative infrastructure owned as a co-op, where crediting, pay, solvency and growth follow fixed, published rules that any member can verify, enforced by open-source software.">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Studio Commons · A studio owned by the people who use it">
+<meta property="og:description" content="Run by rules no one can bend. Peer-credited work, bills first, payouts gated by safety, growth only from proven surplus.">
+<meta property="og:url" content="https://tokeloshe.github.io/studio-commons/">
+<meta property="og:image" content="https://tokeloshe.github.io/studio-commons/og.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="675">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://tokeloshe.github.io/studio-commons/og.png">
+<style>
+:root{--bg:#0A090D;--ink:#F3EFE8;--body:#D3CCD8;--dim:#8E8698;--line:#231F2B;--panel:#110F16;--gold:#F2B84B;--teal:#3FD0B6;--violet:#A78BFA;--blue:#6CA8FF;--rose:#FF6B7A;--green:#5EE6A0;--amber:#FFB547}
+*{box-sizing:border-box}
+html,body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.7 ui-sans-serif,-apple-system,"Segoe UI",Helvetica,Arial,sans-serif;-webkit-font-smoothing:antialiased}
+a{color:var(--gold);text-decoration:none}a:hover{text-decoration:underline}
+code{font:0.88em ui-monospace,"SF Mono",Menlo,Consolas,monospace;background:#16131C;border:1px solid var(--line);border-radius:5px;padding:1px 5px;color:#E6DFEA}
+.wrap{max-width:1180px;margin:0 auto;padding:0 16px}
+header{display:flex;align-items:center;justify-content:space-between;padding:22px 0}
+.mark{letter-spacing:.34em;font-weight:600;font-size:13px}
+nav a{color:var(--dim);font-size:13px;margin-left:22px;letter-spacing:.06em}
+.hero{margin:28px 0 26px}
+h1{font-weight:300;font-size:clamp(30px,4.6vw,52px);line-height:1.12;letter-spacing:.01em;margin:0 0 12px}
+.sub{color:var(--dim);font-size:clamp(16px,1.6vw,19px);max-width:780px;margin:0}
+.stage{position:relative;border-radius:14px;overflow:hidden;box-shadow:0 30px 80px rgba(0,0,0,.6),0 0 0 1px var(--line)}
+.stage svg{display:block;width:100%;height:auto}
+.bar{display:flex;align-items:center;gap:14px;margin:14px 0 6px}
+button{background:none;border:1px solid var(--line);color:var(--ink);border-radius:999px;height:36px;min-width:36px;padding:0 14px;font:inherit;font-size:13px;cursor:pointer;letter-spacing:.04em}
+button:hover{border-color:var(--dim)}
+button.on{border-color:var(--gold);color:var(--gold)}
+input[type=range]{flex:1;accent-color:var(--gold);min-width:80px}
+.time{font:12px ui-monospace,Menlo,Consolas,monospace;color:var(--dim);width:92px;text-align:right}
+.chapters{display:flex;flex-wrap:wrap;gap:8px;margin:6px 0 16px}
+.chapters button{color:var(--dim)}
+.small{color:var(--dim);font-size:13px;margin:0}
+article{max-width:740px;margin:56px auto 0;color:var(--body)}
+article h2{color:var(--ink);font-weight:500;font-size:24px;letter-spacing:.01em;margin:56px 0 10px}
+article h2 .n{color:var(--dim);font:500 12px ui-monospace,Menlo,Consolas,monospace;letter-spacing:.2em;display:block;margin-bottom:6px}
+article p{margin:0 0 18px}
+article strong{color:var(--ink);font-weight:600}
+article ul,article ol{padding-left:22px;margin:0 0 18px}
+article li{margin:5px 0}
+.rules{list-style:none;padding:0;margin:8px 0 22px;border:1px solid var(--line);border-radius:12px;overflow:hidden}
+.rules li{display:grid;grid-template-columns:44px 1fr;gap:14px;padding:14px 16px;margin:0;border-top:1px solid var(--line);background:var(--panel)}
+.rules li:first-child{border-top:0}
+.rules b{font:700 13px ui-monospace,Menlo,Consolas,monospace;color:var(--gold);padding-top:2px}
+.split{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin:6px 0 22px}
+.split div{border:1px solid var(--line);border-radius:12px;padding:12px 14px;background:var(--panel)}
+.split b{display:block;font-weight:300;font-size:28px;line-height:1.2}
+.split span{color:var(--dim);font-size:13px}
+table{width:100%;border-collapse:collapse;margin:0 0 22px;font-size:14.5px}
+th,td{text-align:left;padding:11px 12px;border-bottom:1px solid var(--line);vertical-align:top}
+th{color:var(--dim);font-weight:500;font-size:12px;letter-spacing:.12em;text-transform:uppercase}
+td:first-child{color:var(--ink)}
+.state{display:inline-block;border-radius:999px;padding:1px 10px;font:600 12px ui-monospace,Menlo,Consolas,monospace;letter-spacing:.06em}
+pre{background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:16px 18px;overflow:auto;font:12.5px/1.6 ui-monospace,Menlo,Consolas,monospace;color:#D9D2DE;margin:0 0 20px}
+.k{color:var(--dim)}
+.note{border-left:3px solid var(--gold);background:var(--panel);border-radius:0 10px 10px 0;padding:14px 18px;margin:0 0 20px;font-size:15px}
+.cta{display:flex;flex-wrap:wrap;gap:10px;margin:8px 0 24px}
+.cta a{border:1px solid var(--line);border-radius:999px;padding:8px 16px;color:var(--ink);font-size:14px}
+.cta a.primary{border-color:var(--gold);color:var(--gold)}
+.cta a:hover{text-decoration:none;border-color:var(--dim)}
+footer{color:var(--dim);font-size:13px;padding:48px 0 60px;border-top:1px solid var(--line);margin-top:72px}
+@media (max-width:640px){nav{display:none}.time{width:70px}article h2{font-size:21px}.split{grid-template-columns:repeat(2,1fr)}table{font-size:13px}th,td{padding:9px 6px}}
+</style>
+</head>
+<body>
+<div class="wrap">
+<header><div class="mark">STUDIO COMMONS</div>
+<nav><a href="https://github.com/Tokeloshe/studio-commons">GitHub</a><a href="https://github.com/Tokeloshe/studio-commons/blob/main/FOUNDING_A_HUB.md">Found a hub</a><a href="#limits">Honest limits</a></nav></header>
+
+<div class="hero">
+<h1>A studio owned by the people who use it, run by rules no one can bend.</h1>
+<p class="sub">Stages, gear and edit suites owned as a co-op, where crediting, pay, solvency and growth follow fixed, published rules that any member can verify. Open-source software enforces them, but you can understand every one without reading a line of code.</p>
+</div>
+
+<div class="stage">{{SVG}}</div>
+<div class="bar">
+<button id="play" aria-label="Pause">Pause</button>
+<input id="scrub" type="range" min="0" max="{{T}}" step="0.01" value="0" aria-label="Scrub timeline">
+<span class="time" id="time">0.0 s</span>
+<button id="slow" aria-pressed="false">0.5×</button>
+</div>
+<div class="chapters">
+{{CHAPTERS}}
+</div>
+<p class="small">Every number in the film is computed by the crates in the repository (<code>cargo run --release --example film</code>); nothing on screen is invented for the animation.</p>
+
+<article>
+
+<h2><span class="n">01</span>The whole idea in five rules</h2>
+<p>A <strong>hub</strong> is a creative space owned by its members, who pay modest monthly dues and share in what it earns. Five rules govern everything, and none of them needs software to understand:</p>
+<ol class="rules">
+<li><b>1</b><span><strong>Work is credited by peers, not bosses.</strong> Every contribution, from directing and editing to sound and building shelves, is logged with its hours. At least three independent reviewers score its quality (never yourself, never your own project's collaborators), and the median counts. Your merit is hours × that median. Nothing about who you are enters the math.</span></li>
+<li><b>2</b><span><strong>Bills come first. Always.</strong> Nothing is profit until every expense of the month is paid, and any debts from past months are settled next. A hub that lost money pays out nothing, to anyone. That single rule is why this co-op can't die the way co-ops usually die: by distributing money it needed for rent.</span></li>
+<li><b>3</b><span><strong>Payouts depend on how safe the hub is.</strong> The hub's health is its runway, the number of months it could survive on reserves. A struggling hub automatically saves; a safe hub automatically shares. Nobody votes on it, so nobody can be pressured over it.</span></li>
+<li><b>4</b><span><strong>When healthy, profit splits four ways.</strong> Your share of the members' half is your merit divided by everyone's merit. If a project earns money years later, the same ledger recomputes the same shares: residuals forever, no negotiating, no lost paperwork.</span></li>
+<li><b>5</b><span><strong>Growth is earned, never gambled.</strong> A hub may seed a new hub in another city only with six-plus months of runway and three consecutive profitable, healthy months, and only from its expansion fund, never from reserves. One bad month resets the clock. Every hub's finances are firewalled, and every hub records who seeded it, forever.</span></li>
+</ol>
+<table>
+<tr><th>Runway</th><th>State</th><th>What happens to profit</th></tr>
+<tr><td>under 3 months</td><td><span class="state" style="color:var(--rose);border:1px solid var(--rose)">CRITICAL</span></td><td>all of it builds reserves</td></tr>
+<tr><td>3 to 6 months</td><td><span class="state" style="color:var(--amber);border:1px solid var(--amber)">REBUILDING</span></td><td>half builds reserves, half is shared</td></tr>
+<tr><td>6+ months</td><td><span class="state" style="color:var(--green);border:1px solid var(--green)">HEALTHY</span></td><td>full four-way split</td></tr>
+</table>
+<div class="split">
+<div><b style="color:var(--gold)">50%</b><span>members, by merit</span></div>
+<div><b style="color:var(--teal)">20%</b><span>reinvested in the hub</span></div>
+<div><b style="color:var(--violet)">10%</b><span>expansion fund</span></div>
+<div><b style="color:var(--blue)">20%</b><span>reserves</span></div>
+</div>
+<p>after a 1% platform fee on profit, disclosed in full below.</p>
+
+<h2><span class="n">02</span>A month in the life of a hub</h2>
+<ol>
+<li>Money comes in: dues, stage rentals, project services. Money goes out: rent, gear, wages. Every entry is recorded as it happens.</li>
+<li>Members log their work; peers review it through the month.</li>
+<li>On closing day the books settle in strict order: expenses, then old debts, then the 1% fee on what's left, then the health-gated split.</li>
+<li>The month's report (revenue, costs, health, runway, every payout) goes to all members with a <strong>conservation audit</strong>: a check that every unit of money in equals every unit out or held. It's the meeting agenda, and there's nothing to argue about because anyone can recompute it.</li>
+<li>Repeat. When runway crosses six months and holds, full payouts begin. When the expansion fund can cover it, the next city gets its studio.</li>
+</ol>
+
+<h2><span class="n">03</span>The scams these rules kill</h2>
+<table>
+<tr><th>The industry's version</th><th>What stops it here</th></tr>
+<tr><td>"Hollywood accounting": hits that officially lost money, so profit-sharers get nothing</td><td>Books that must balance to the unit, published every month, recomputable by any member</td></tr>
+<tr><td>Lost credits and vanished residuals</td><td>A permanent, tamper-evident work ledger; year-ten revenue pays the same shares as year one</td></tr>
+<tr><td>Pay decided by politics</td><td>Identity-blind math: hours × median of independent reviews, conflicts of interest excluded</td></tr>
+<tr><td>Owners extract everything, or co-ops collapse from generosity</td><td>Bills first, debts next, payouts gated by safety: both failure modes are structurally impossible</td></tr>
+<tr><td>Gatekept access</td><td>Cost-share membership on published, objective criteria; every hub, every city, same deal</td></tr>
+<tr><td>Reckless franchising, or growth that never comes</td><td>Expansion only from proven surplus, strongest hub first, firewalled finances</td></tr>
+</table>
+
+<h2><span class="n">04</span>Why you can trust it</h2>
+<ul>
+<li><strong>Everything is deterministic.</strong> Same ledger, same results, byte for byte: scores, payouts, sponsor rankings, audits. Any member can recompute any decision.</li>
+<li><strong>It's adversarially tested.</strong> {{TESTS}} tests, including a dedicated attack suite: shill reviews, review rings, double votes, hour-cap probing, rounding attacks at extreme values, ledger tampering, bleed-the-hub-dry sequences, and simulated decades of boom and bust checked for exact conservation after every period. Some attacks found real flaws during development; the attacks and the fixes are both in the repository.</li>
+<li><strong>All money is exact integer arithmetic.</strong> No floating-point drift; rounding remainders go to reserves by design.</li>
+<li><strong>It can't be taken private.</strong> AGPL-3.0: every deployment, including hosted ones, must publish its source.</li>
+</ul>
+
+<h2 id="limits"><span class="n">05</span>And the honest limits</h2>
+<p>A system that claims to fix trust owes you these up front:</p>
+<ul>
+<li><strong>Code can't see your bank account.</strong> The audit proves the books are internally exact, not that entries match reality. The founding guide mandates monthly bank reconciliation by a rotating member, never the bookkeeper.</li>
+<li><strong>A majority of colluding reviewers beats the median.</strong> One shill can't move your score; an organized majority can. Small hubs should twin review pools with another hub. Capture is made costly and detectable, not impossible.</li>
+<li><strong>Hours are attested, not surveilled.</strong> Caps and peer review bound the damage, but a community that tolerates inflated hours has a culture problem no ledger fixes.</li>
+<li><strong>The ledger hash isn't cryptographic yet.</strong> Today it catches accidental corruption and casual tampering. SHA-256 plus external anchoring is the designed upgrade; until then it's a smoke detector, not a vault.</li>
+<li><strong>Code isn't law until your bylaws say so.</strong> Phase 2 of the founding guide exists to close exactly this gap.</li>
+</ul>
+
+<h2><span class="n">06</span>The platform fee, disclosed in full</h2>
+<p>The reference deployment sends <strong>1% of net profit</strong> (never revenue; loss months pay nothing) to the project's creator to fund development. It's visible in source, computed by the same exact math as every other flow, and zero unless your hub actually profits. It isn't technically immutable: this is AGPL code and a fork can strip it in one line. Keep it and you fund the commons this came from; fork it out and the licence permits that. <a href="https://github.com/Tokeloshe/studio-commons#the-platform-fee-disclosed-in-full">Wallet and verification details</a>.</p>
+
+<h2><span class="n">07</span>What's real and what's planned</h2>
+<ul>
+<li><strong>Working and tested now:</strong> the entire economic rule system, an 11-crate Rust workspace with the adversarial test suite.</li>
+<li><strong>Simulated, pending integration:</strong> XRPL transaction submission (amounts computed and logged, not yet sent), the DeFi treasury model, compliance adapters.</li>
+<li><strong>Designed, not started:</strong> the member dashboard, Substrate governance anchoring, IPFS storage.</li>
+</ul>
+<p>The economic core came first deliberately: it's the part the industry gets wrong on purpose, and it had to be provably right before anything touches real money.</p>
+
+<h2><span class="n">08</span>Verify it yourself</h2>
+<pre><span class="k">$ git clone https://github.com/Tokeloshe/studio-commons.git &amp;&amp; cd studio-commons</span>
+<span class="k">$ cargo test --all</span>                          # run the attack suite yourself
+<span class="k">$ cargo run --release --example film</span>      # the scenario in the film, as JSON</pre>
+<p>Rust 1.70 or later. Windows users: see <a href="https://github.com/Tokeloshe/studio-commons/blob/main/WINDOWS_INSTALL.md">WINDOWS_INSTALL.md</a>.</p>
+
+<h2><span class="n">09</span>Found a hub</h2>
+<p>You don't need permission; that's the point. There's no head office to apply to, no franchise fee, no founder who can veto your hub. The founding guide walks from a four-week, zero-cost demand test to incorporation, opening, reaching Healthy, and seeding the next city.</p>
+<div class="note">The shortest first step is free: clone the repository and run <code>cargo test --all</code>. You'll have personally verified every economic rule before trusting any of it.</div>
+<div class="cta">
+<a class="primary" href="https://github.com/Tokeloshe/studio-commons/blob/main/FOUNDING_A_HUB.md">Read the founding guide</a>
+<a href="https://github.com/Tokeloshe/studio-commons">Read the code</a>
+<a href="https://github.com/Tokeloshe/studio-commons/discussions">Join the discussion</a>
+<a href="https://github.com/Tokeloshe/studio-commons/issues">Break it in public</a>
+</div>
+
+</article>
+
+<footer>AGPL-3.0 · <a href="https://github.com/Tokeloshe/studio-commons">github.com/Tokeloshe/studio-commons</a> · <a href="https://x.com/e_honiball">@e_honiball</a><br>The industry runs on trust and breaks it for profit. Infrastructure shouldn't need trust.</footer>
+</div>
+<script>
+(function(){
+  var T={{T}}, film=document.getElementById('film');
+  var play=document.getElementById('play'), scrub=document.getElementById('scrub'),
+      time=document.getElementById('time'), slow=document.getElementById('slow');
+  var anims=[], paused=false, rate=1, dragging=false;
+  function grab(){ try{ anims=film.getAnimations({subtree:true}); }catch(e){ anims=document.getAnimations(); } }
+  function now(){ return anims.length ? ((anims[0].currentTime||0)/1000)%T : 0; }
+  function seek(t){ anims.forEach(function(a){ a.currentTime=t*1000; }); }
+  function setPaused(p){ paused=p; anims.forEach(function(a){ a.playbackRate=p?0:rate; });
+    play.textContent=p?'Play':'Pause'; play.setAttribute('aria-label',p?'Play':'Pause'); }
+  function tick(){ if(!dragging){ var t=now(); scrub.value=t.toFixed(2); time.textContent=t.toFixed(1)+' s'; }
+    requestAnimationFrame(tick); }
+  grab();
+  if(!anims.length){ document.querySelector('.bar').style.display='none'; document.querySelector('.chapters').style.display='none'; return; }
+  play.onclick=function(){ setPaused(!paused); };
+  slow.onclick=function(){ rate=rate===1?.5:1; if(!paused) anims.forEach(function(a){ a.playbackRate=rate; });
+    slow.classList.toggle('on',rate!==1); slow.setAttribute('aria-pressed',rate!==1); };
+  scrub.addEventListener('input',function(){ dragging=true; seek(+scrub.value); time.textContent=(+scrub.value).toFixed(1)+' s'; });
+  scrub.addEventListener('change',function(){ dragging=false; });
+  document.querySelectorAll('.chapters button').forEach(function(b){ b.onclick=function(){ seek(+b.dataset.t); }; });
+  document.addEventListener('keydown',function(e){ if(e.target.tagName==='INPUT')return;
+    if(e.code==='Space'){ e.preventDefault(); setPaused(!paused); }
+    if(e.code==='ArrowRight'){ seek(Math.min(T-.01,now()+2)); }
+    if(e.code==='ArrowLeft'){ seek(Math.max(0,now()-2)); } });
+  tick();
+})();
+</script>
+</body>
+</html>

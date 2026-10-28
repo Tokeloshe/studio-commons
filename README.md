@@ -12,7 +12,8 @@ Creative infrastructure — stages, gear, edit suites — owned as a co-op, wher
   <img src="docs/media/studio-commons.svg" width="100%"
        alt="Animation: six crew members on a short film are credited by independent peer review, where a shill review cannot move the median and self-review, conflicts of interest and inflated hours are refused; the Los Angeles hub closes its months with bills first, reserves built while runway is short, a loss month absorbed by reserves, then a four-way split once healthy; the members' half is paid by merit with the same shares ten years later; the expansion fund seeds hubs in New York, Berlin, Mumbai, Lagos and São Paulo; and the books conserve to the dollar.">
   <br>
-  <sub>Every number on screen is computed by the crates in this repo: <code>cargo run --release --example film</code>.</sub>
+  <sub>Every number on screen is computed by the crates in this repo: <code>cargo run --release --example film</code>.
+  <a href="https://tokeloshe.github.io/studio-commons/">Open the interactive version</a> to pause, scrub and jump between chapters.</sub>
 </p>
 
 > **Want a studio like this in your city? You don't need our permission — that's the point.**

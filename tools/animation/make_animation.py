@@ -1,6 +1,7 @@
 #!/usr/bin/env python3
 # SPDX-License-Identifier: AGPL-3.0-or-later
-"""Build docs/media/studio-commons.svg, the README animation.
+"""Build docs/media/studio-commons.svg, the README animation, and the GitHub
+Pages site (site/index.html, from tools/animation/page.html).
 
 Every number on screen comes from the real crates, through one scenario:
 
@@ -27,6 +28,9 @@ import sys
 HERE = os.path.dirname(os.path.abspath(__file__))
 ROOT = os.path.dirname(os.path.dirname(HERE))
 OUT = os.path.join(ROOT, "docs", "media", "studio-commons.svg")
+OUT_HTML = os.path.join(ROOT, "site", "index.html")
+PAGE = os.path.join(HERE, "page.html")
+CH = []                                  # player chapters: (seconds, label)
 W, H = 1200, 675
 T = 63.0
 
@@ -168,6 +172,7 @@ def build(d, tests):
         starts.append(t)
         t += 2.5 if len(c["scores"]) > 3 else 1.3
     REF0 = t + .1                                  # refusals begin
+    CH.extend([(I0 + .3, "Credited by peers"), (starts[4] + .1, "A shill review"), (REF0, "Refused")])
     BARS0 = REF0 + 2.9                             # merit bars
 
     # ledger cards with chain links
@@ -290,6 +295,7 @@ def build(d, tests):
     for dd in durs:
         tm.append(tm[-1] + dd)
     II1 = tm[-1] + .2
+    CH.extend([(tm[0], "Bills first"), (tm[8], "A loss month"), (tm[13], "Four-way split")])
     A(f'<g class="{fade(M0, II1, .6)}">')
     A(text(64, 112, "RULES 2 TO 4 · BILLS FIRST, THEN SAFETY, THEN SHARE", 14, INK, SANS, 600, ls=3))
     phases = [
@@ -418,6 +424,7 @@ def build(d, tests):
     # ============================================ ACT III: paid by merit
     III0 = II1 - .2
     III1 = III0 + 7.6
+    CH.append((III0 + .4, "Paid by merit"))
     R = d["residuals"]
     y1, y10 = R["year1"], R["year10"]
     A(f'<g class="{fade(III0, III1, .6)}">')
@@ -451,6 +458,7 @@ def build(d, tests):
     # ============================================== ACT IV: growth
     IV0 = III1 - .2
     IV1 = IV0 + 11.4
+    CH.append((IV0 + .4, "The network"))
     allm = d["months"]
     mstart, mend = 14, len(allm) - 1
     MT0, MT1 = IV0 + 1.0, IV1 - 1.4
@@ -537,6 +545,7 @@ def build(d, tests):
     # ============================================== ACT V: the audit
     V0 = IV1 - .2
     V1 = V0 + 5.6
+    CH.append((V0 + .4, "The audit"))
     A(f'<g class="{fade(V0, V1, .6)}">')
     A(text(64, 112, "THE BOOKS BALANCE TO THE DOLLAR", 14, INK, SANS, 600, ls=3))
     A(text(64, 136, f"Los Angeles, {len(allm)} months, through the conservation audit", 11.5, DIM, ls=.3))
@@ -620,4 +629,14 @@ if __name__ == "__main__":
     os.makedirs(os.path.dirname(OUT), exist_ok=True)
     with open(OUT, "w", encoding="utf-8") as fh:
         fh.write(svg)
-    print(f"wrote {os.path.relpath(OUT, ROOT)} ({len(svg) / 1024:.0f} KB), {n} tests", file=sys.stderr)
+    with open(PAGE, encoding="utf-8") as fh:
+        page = fh.read()
+    chapters = "\n".join(f'<button data-t="{t:.1f}">{esc(label)}</button>' for t, label in CH)
+    inline = svg.replace('width="1200" height="675" role="img"', 'role="img" id="film"')
+    page = (page.replace("{{SVG}}", inline).replace("{{T}}", f(T)).replace("{{CHAPTERS}}", chapters)
+            .replace("{{TESTS}}", str(n)))
+    os.makedirs(os.path.dirname(OUT_HTML), exist_ok=True)
+    with open(OUT_HTML, "w", encoding="utf-8") as fh:
+        fh.write(page)
+    print(f"wrote {os.path.relpath(OUT, ROOT)} ({len(svg) / 1024:.0f} KB), site/index.html, {n} tests",
+          file=sys.stderr)
