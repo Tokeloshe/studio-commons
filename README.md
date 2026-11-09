@@ -3,6 +3,8 @@
 [![GitHub license](https://img.shields.io/github/license/Tokeloshe/studio-commons)](https://github.com/Tokeloshe/studio-commons/blob/main/LICENSE)
 [![GitHub stars](https://img.shields.io/github/stars/Tokeloshe/studio-commons)](https://github.com/Tokeloshe/studio-commons/stargazers)
 [![GitHub issues](https://img.shields.io/github/issues/Tokeloshe/studio-commons)](https://github.com/Tokeloshe/studio-commons/issues)
+[![Sponsor](https://img.shields.io/badge/sponsor-GitHub-EA4AAA?logo=githubsponsors&logoColor=white)](https://github.com/sponsors/Tokeloshe)
+[![Buy me a coffee](https://img.shields.io/badge/buy%20me%20a%20coffee-%245-FFDD00?logo=buymeacoffee&logoColor=black)](https://buymeacoffee.com/Tokeloshe)
 
 **A studio owned by the people who use it, run by rules no one can bend.**
 
@@ -179,6 +181,20 @@ STUDIO_REGION=LA cargo run --release   # LA, NYC, MUMBAI, BERLIN, LAGOS, ...
 ## Contributing
 
 Same standard as the code: every feature tested, `cargo test --all` green, and any change to economic logic ships with battle tests that attack it. High-impact areas: jurisdiction adapters, the dashboard, XRPL/Substrate integration, localization. Fork → branch → tests → PR.
+
+## Support Studio Commons
+
+Studio Commons is free, open source and built by one person in the evenings. If you want creative spaces owned by the people who use them, a coffee ($5) or a GitHub sponsorship keeps the work going.
+
+<p align="center">
+  <a href="https://github.com/sponsors/Tokeloshe"><img src="https://img.shields.io/badge/Sponsor%20on%20GitHub-EA4AAA?style=for-the-badge&logo=githubsponsors&logoColor=white" alt="Sponsor on GitHub" height="40"></a>
+  &nbsp;&nbsp;
+  <a href="https://buymeacoffee.com/Tokeloshe"><img src="https://cdn.buymeacoffee.com/buttons/v2/default-yellow.png" alt="Buy Me A Coffee" height="40"></a>
+</p>
+
+<p align="center"><sub>GitHub Sponsors: two clicks if you are signed in to GitHub. Buy Me a Coffee: any card, no account needed.</sub></p>
+
+Can't right now? A star on this page or a clear bug report helps Studio Commons just as much.
 
 ## License & Contact
 
